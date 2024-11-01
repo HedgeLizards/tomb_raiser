@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=5 format=4 uid="uid://ba6qjddxcbjdt"]
+
+[ext_resource type="PackedScene" uid="uid://dkuc368kt8yd4" path="res://scenes/grass.tscn" id="1_rtmay"]
+[ext_resource type="PackedScene" uid="uid://c8our1tju6by1" path="res://scenes/sea.tscn" id="2_oqqpt"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_o1kb8"]
+resource_name = "ground"
+scenes/1/scene = ExtResource("1_rtmay")
+scenes/2/scene = ExtResource("2_oqqpt")
 
 [sub_resource type="TileSet" id="TileSet_45ciy"]
 tile_shape = 3
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_o1kb8")
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAQABAAEAAAAAAAAAAQAEAAAAAAAAAAAAAQACAAAAAAAAAAAAAQADAAIAAAAAAAAAAgABAAAAAAAAAAAAAgAAAAIAAAAAAAAAAgD+/wEAAAAAAAAAAgA=")
 tile_set = SubResource("TileSet_45ciy")
