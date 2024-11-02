@@ -61,7 +61,18 @@ func walkable_tiles() -> Dictionary:
 				if cost <= action_points:
 					frontier.push_back(WalkTile.new(neighbour, cost))
 	var end = Time.get_ticks_msec()
+	visited.erase(mappos)
 	return visited
+
+func targets(action: ActionType) -> Array[Vector2i]:
+	#return []
+	return tilemap.get_surrounding_cells(mappos).filter(func(pos): can_act(action, pos))
+
+func can_act(action: ActionType, pos: Vector2i) -> bool:
+	if action == ActionType.Raise:
+		return tilemap.get_tile(pos).raised != null
+	else:
+		return false
 
 func selectable() -> Selectable:
 	#todo: get these value from actual unit

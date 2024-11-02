@@ -6,22 +6,25 @@ signal selection_changed(selected: Selectable)
 # Only one of selected_unit and selected_tile may be non-null at a time
 var selected_unit: Node = null
 var selected_tile: Tile = null
+var selected_unit_action = null # only possible when selected_unit is not null
 
 const NOT_CLICKING: Vector2 = Vector2(-1_000_000, -1_000_000)
 var click_start: Vector2 = NOT_CLICKING
 
 
 func clear_select() -> void:
-	self.selected_unit = null
-	self.selected_tile = null
+	selected_unit = null
+	selected_tile = null
+	selected_unit_action = null
 	%Selections.clear()
+
+func select_none() -> void:
+	clear_select()
 	selection_changed.emit(null)
 
 func select_unit(unit: Node) -> void:
-	# todo: validate selected
-	self.selected_unit = unit
-	self.selected_tile = null
-	%Selections.clear()
+	clear_select()
+	selected_unit = unit
 	print("selected ", unit.mappos, " ", unit)
 	var walkable: Array[Vector2i]
 	walkable.assign(unit.walkable_tiles().keys()) #%Ground.get_surrounding_cells(unit.mappos)
@@ -31,10 +34,14 @@ func select_unit(unit: Node) -> void:
 	selection_changed.emit(unit.selectable())
 
 func select_tile(tile: Tile) -> void:
-	self.selected_unit = null
-	self.selected_tile = null
+	clear_select()
+	selected_tile = tile
 	%Selections.clear()
 	selection_changed.emit(tile.selectable())
+
+func select_unit_action(action) -> void:
+	self.selected_unit_action = action
+	#for 
 
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2
@@ -62,21 +69,18 @@ func _unhandled_input(event: InputEvent) -> void:
 func tile_clicked(pos: Vector2i) -> void:
 	var unit: Node2D = %Units.unit_at(pos)
 	if selected_unit != null and selected_unit == unit:
-		clear_select()
+		select_none()
 		return
 	if unit != null:
 		select_unit(unit)
 		return
 	if selected_unit:
-		if pos == selected_unit.mappos:
-			clear_select()
-			return
 		if selected_unit.can_walk_to(pos):
 			selected_unit.walk_to(pos)
 			if selected_unit.can_do_action():
 				select_unit(selected_unit)
 			else:
-				clear_select()
+				select_none()
 			return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:

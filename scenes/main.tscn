@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://code/units.gd" id="4_dld28"]
 [ext_resource type="Script" path="res://code/ground.gd" id="4_ytyvg"]
 [ext_resource type="PackedScene" uid="uid://05rsgs1cwttg" path="res://scenes/units/necromancer.tscn" id="6_mgcqv"]
-[ext_resource type="PackedScene" path="res://scenes/music.tscn" id="10_ku836"]
+[ext_resource type="PackedScene" uid="uid://dfr5m2k6trtw7" path="res://scenes/music.tscn" id="10_ku836"]
 [ext_resource type="PackedScene" uid="uid://cyerdrm61isi0" path="res://scenes/ui.tscn" id="10_s3ry7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_unqnr"]

@@ -6,6 +6,7 @@ var walkable: bool = false
 var walk_cost: int = 1
 var description: String = ""
 var title: String
+var raised: PackedScene = null
 
 #var tile_source: int = 0
 #var atlas_coord: Vector2i
@@ -27,6 +28,8 @@ func selectable() -> Selectable:
 		"walk_cost": walk_cost
 	}
 	return selectable
+
+	
 
 #
 #const GRASS = Tile.new()

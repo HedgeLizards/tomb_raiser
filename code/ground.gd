@@ -16,8 +16,8 @@ var tile_index = {
 	Vector2i(2, 0): MOUNTAIN,
 	Vector2i(0, 1): TOMB,
 	Vector2i(1, 1): CEMETERY,
-	Vector2i(2, 1): VILLAGE,
-	Vector2i(0, 2): MOUNTAIN
+	Vector2i(2, 1): FOREST,
+	Vector2i(0, 2): VILLAGE
 }
 
 func get_tile(pos: Vector2i) -> Tile:
