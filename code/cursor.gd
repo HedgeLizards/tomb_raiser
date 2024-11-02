@@ -61,6 +61,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func tile_clicked(pos: Vector2i) -> void:
 	var unit: Node2D = %Units.unit_at(pos)
+	if selected_unit != null and selected_unit == unit:
+		clear_select()
+		return
 	if unit != null:
 		select_unit(unit)
 		return

@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=16 format=4 uid="uid://ba6qjddxcbjdt"]
 
 [ext_resource type="Script" path="res://code/MapCamera2D.gd" id="1_7m1iq"]
+[ext_resource type="Script" path="res://code/main.gd" id="1_12yn6"]
 [ext_resource type="Script" path="res://code/cursor.gd" id="1_n1hes"]
 [ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selected.tscn" id="3_jehwe"]
 [ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/units/skeleton.tscn" id="3_t8oo7"]
@@ -38,6 +39,7 @@ tile_size = Vector2i(400, 400)
 sources/0 = SubResource("TileSetScenesCollectionSource_8cjmg")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_12yn6")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
@@ -48,7 +50,6 @@ script = ExtResource("4_ytyvg")
 
 [node name="Selections" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAD/////AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_dyrtn")
 
 [node name="Units" type="Node2D" parent="."]
@@ -82,3 +83,4 @@ drag_inertia = 0.0
 [node name="Music" parent="." instance=ExtResource("10_ku836")]
 
 [connection signal="selection_changed" from="Cursor" to="UI" method="_on_cursor_selection_changed"]
+[connection signal="end_turn_pressed" from="UI" to="." method="_on_ui_end_turn_pressed"]

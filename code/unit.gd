@@ -15,17 +15,21 @@ func _ready() -> void:
 	mappos = tilemap.local_to_map(position)
 	position = tilemap.map_to_local(mappos)
 
+func reset_turn() -> void:
+	action_points = max_action_points
+
 func can_walk_to(pos: Vector2i) -> bool:
 	return walkable_tiles().has(pos)
 
-func walk_to(pos: Vector2) -> void:
+func walk_to(pos: Vector2i) -> void:
+	var cost: int = walkable_tiles()[pos].cost
+	action_points -= cost
 	mappos = pos
 	# todo: animation
 	position = tilemap.map_to_local(mappos)
 
 func can_do_action() -> bool:
-	# todo: action points
-	return true
+	return action_points > 0
 
 
 class WalkTile:

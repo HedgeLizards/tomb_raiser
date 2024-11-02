@@ -2,6 +2,8 @@ extends CanvasLayer
 
 const UIAction = preload('res://scenes/ui_action.tscn')
 
+signal end_turn_pressed
+
 func _on_cursor_selection_changed(selected):
 	if selected == null:
 		$Selection.visible = false
@@ -49,3 +51,8 @@ func _on_turn_mouse_entered():
 
 func _on_turn_mouse_exited():
 	$Turn.get_theme_stylebox('panel').bg_color = Color8(64, 64, 64, 196)
+
+
+func _on_turn_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		end_turn_pressed.emit()
