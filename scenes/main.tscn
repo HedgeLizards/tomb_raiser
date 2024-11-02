@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dkuc368kt8yd4" path="res://scenes/tiles/grass.tscn" id="1_hl2yr"]
 [ext_resource type="Script" path="res://code/cursor.gd" id="1_n1hes"]
 [ext_resource type="PackedScene" uid="uid://c8our1tju6by1" path="res://scenes/tiles/sea.tscn" id="2_06ss3"]
-[ext_resource type="PackedScene" uid="uid://bh78c31mr60x3" path="res://scenes/tiles/mountain.tscn" id="3_0ygfw"]
+[ext_resource type="PackedScene" uid="uid://6n0l3ccrvesc" path="res://scenes/tiles/mountain.tscn" id="3_0ygfw"]
 [ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selected.tscn" id="3_jehwe"]
 [ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/unit.tscn" id="3_t8oo7"]
 [ext_resource type="Script" path="res://code/units.gd" id="4_dld28"]
