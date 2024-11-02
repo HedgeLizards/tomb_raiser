@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dulxf80dhp26y"
-path="res://.godot/imported/unit_shadow.png-d5d3ed3455de17f3df119999d863e051.ctex"
+uid="uid://cyp6bwj652nky"
+path="res://.godot/imported/unit_humans.png-ef6e455a9c6361c904d0a5212f2b3c3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/unit_shadow.png"
-dest_files=["res://.godot/imported/unit_shadow.png-d5d3ed3455de17f3df119999d863e051.ctex"]
+source_file="res://textures/unit_humans.png"
+dest_files=["res://.godot/imported/unit_humans.png-ef6e455a9c6361c904d0a5212f2b3c3d.ctex"]
 
 [params]
 

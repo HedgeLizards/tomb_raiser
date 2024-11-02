@@ -17,9 +17,11 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/mode=2
 window/dpi/allow_hidpi=false
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0705882, 0.803922, 0.85098, 1)

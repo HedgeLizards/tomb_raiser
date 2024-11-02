@@ -83,7 +83,9 @@ func _unhandled_input(event):
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			
 			_dragging = false
-			
+			if _drag_movement.length() < 3:
+				_drag_movement.x = 0
+				_drag_movement.y = 0
 			if _drag_movement != Vector2.ZERO || _pan_direction != Vector2.ZERO:
 				set_process(process_callback == CAMERA2D_PROCESS_IDLE)
 				set_physics_process(process_callback == CAMERA2D_PROCESS_PHYSICS)

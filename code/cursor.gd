@@ -1,5 +1,8 @@
 extends Node
 
+signal selection_changed(selected: Selectable)
+
+
 var selected: Node = null
 const NOT_CLICKING: Vector2 = Vector2(-1_000_000, -1_000_000)
 var click_start: Vector2 = NOT_CLICKING
@@ -18,10 +21,12 @@ func select(unit: Node) -> void:
 		for neighbour in walkable:
 			%Selections.set_cell(neighbour, 0, Vector2i.ZERO, 1)
 		#print(walkable)
+	selection_changed.emit(unit.selectable())
 
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2
 	if event is InputEventMouseMotion:
+		#print("mouse motion ", event.)
 		click_start = NOT_CLICKING
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
