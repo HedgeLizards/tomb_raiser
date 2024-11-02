@@ -1,7 +1,8 @@
 extends Node
 
 var selected: Node = null
-
+const NOT_CLICKING: Vector2 = Vector2(-1_000_000, -1_000_000)
+var click_start: Vector2 = NOT_CLICKING
 
 func _ready() -> void:
 	print("cursor ready")
@@ -19,8 +20,17 @@ func select(unit: Node) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2
-	if event is InputEventMouseButton and event.pressed:
-		click_pos = event.global_position
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			click_start = event.position
+			return
+		else:
+			if click_start == event.position:
+				click_start = NOT_CLICKING
+				click_pos = event.position
+			else:
+				click_start = NOT_CLICKING
+				return
 	elif event is InputEventScreenTouch:
 		click_pos = event.position
 	else:
