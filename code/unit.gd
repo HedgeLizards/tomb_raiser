@@ -1,6 +1,9 @@
 extends Sprite2D
 
 
+enum ActionType {Attack, Raise, Heal}
+@export var actions: Array[ActionType]
+
 @export var tilemap: TileMapLayer
 @export var title: String
 @export var max_health: int
@@ -9,6 +12,7 @@ extends Sprite2D
 var mappos: Vector2i
 @onready var action_points = max_action_points
 @onready var health = max_health
+
 
 
 func _ready() -> void:
