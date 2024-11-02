@@ -121,7 +121,13 @@ max_action_points = 3
 [node name="UnitShadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_kjsqr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Wiggle" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3sqys")
+}
+autoplay = "Wiggle"
+
+[node name="Popup" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3sqys")
 }
