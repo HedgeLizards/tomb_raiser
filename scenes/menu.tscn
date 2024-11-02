@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://m5fwye31fln4"]
+
+[ext_resource type="FontFile" uid="uid://cnscda1b375x8" path="res://fonts/KaushanScript-Regular.otf" id="1_h7qny"]
+[ext_resource type="Script" path="res://code/menu.gd" id="1_p3q3q"]
+[ext_resource type="FontFile" uid="uid://c5lt350go4m85" path="res://fonts/Quicksand-Bold.otf" id="2_nfa6v"]
+[ext_resource type="Texture2D" uid="uid://b8pi7iy5qqx7j" path="res://textures/logo.png" id="3_3jt52"]
+[ext_resource type="Texture2D" uid="uid://3mcv38xr160h" path="res://icon.svg" id="4_s3loq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xig0c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.768627)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[node name="Menu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_p3q3q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -47.0
+offset_right = 156.5
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h7qny")
+theme_override_font_sizes/font_size = 64
+text = "Tomb Raiser"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nfa6v")
+theme_override_font_sizes/font_size = 16
+text = "Difficulty"
+
+[node name="Difficulty" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Play" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xig0c")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Play"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nfa6v")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="Logo" type="TextureRect" parent="."]
+texture_filter = 4
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_bottom = -16.0
+grow_vertical = 0
+texture = ExtResource("3_3jt52")
+expand_mode = 1
+
+[node name="Audio" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_s3loq")
+expand_mode = 1
+
+[connection signal="gui_input" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_gui_input"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_mouse_exited"]
