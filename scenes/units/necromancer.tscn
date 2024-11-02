@@ -1,14 +1,89 @@
-[gd_scene load_steps=4 format=3 uid="uid://05rsgs1cwttg"]
+[gd_scene load_steps=7 format=3 uid="uid://05rsgs1cwttg"]
 
 [ext_resource type="Texture2D" uid="uid://djna8anepbgq0" path="res://textures/unit_necromancer.png" id="1_an7gx"]
 [ext_resource type="Script" path="res://code/unit.gd" id="2_lgfq1"]
 [ext_resource type="Texture2D" uid="uid://dulxf80dhp26y" path="res://textures/unit_shadow.png" id="3_dh4qs"]
 
+[sub_resource type="Animation" id="Animation_heidl"]
+resource_name = "Float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UnitShadow:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UnitNecromancer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(20, -430), Vector2(20, -500)]
+}
+
+[sub_resource type="Animation" id="Animation_pxhc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UnitShadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UnitNecromancer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -430)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0e867"]
+_data = {
+"Float": SubResource("Animation_heidl"),
+"RESET": SubResource("Animation_pxhc4")
+}
+
 [node name="Necromancer" type="Sprite2D"]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, -72)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_an7gx")
 offset = Vector2(0, -300)
 script = ExtResource("2_lgfq1")
 
 [node name="UnitShadow" type="Sprite2D" parent="."]
+z_as_relative = false
 texture = ExtResource("3_dh4qs")
+
+[node name="UnitNecromancer" type="Sprite2D" parent="."]
+position = Vector2(0, -430)
+texture = ExtResource("1_an7gx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0e867")
+}
+autoplay = "Float"
