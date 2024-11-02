@@ -13,10 +13,11 @@ func select(unit: Node) -> void:
 	%Selections.clear()
 	if unit != null:
 		print("selected ", unit.mappos, " ", unit)
-		var neighbours: Array[Vector2i] = %Ground.get_surrounding_cells(unit.mappos)
-		for neighbour in neighbours:
+		var walkable: Array[Vector2i]
+		walkable.assign(unit.walkable_tiles().keys()) #%Ground.get_surrounding_cells(unit.mappos)
+		for neighbour in walkable:
 			%Selections.set_cell(neighbour, 0, Vector2i.ZERO, 1)
-		print(neighbours)
+		#print(walkable)
 
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2
