@@ -1,8 +1,7 @@
 extends Node2D
 
 
-enum ActionType {Attack, Raise, Heal}
-@export var actions: Array[ActionType]
+@export var actions: Array[AT.ActionType]
 
 @export var tilemap: TileMapLayer
 @export var title: String
@@ -64,15 +63,30 @@ func walkable_tiles() -> Dictionary:
 	visited.erase(mappos)
 	return visited
 
-func targets(action: ActionType) -> Array[Vector2i]:
+func targets(action: AT.ActionType) -> Array[Vector2i]:
 	#return []
-	return tilemap.get_surrounding_cells(mappos).filter(func(pos): can_act(action, pos))
+	if AT.cost(action) > action_points:
+		return []
+	return tilemap.get_surrounding_cells(mappos).filter(func(pos): return can_act(action, pos))
 
-func can_act(action: ActionType, pos: Vector2i) -> bool:
-	if action == ActionType.Raise:
+func can_act(action: AT.ActionType, pos: Vector2i) -> bool:
+	if not (action in actions):
+		return false
+	if action == AT.ActionType.Raise:
+		#print(pos, " ", tilemap.get_tile(pos).raised != null, tilemap.get_tile(pos).title)
 		return tilemap.get_tile(pos).raised != null
 	else:
 		return false
+
+func act(action: AT.ActionType, pos: Vector2i):
+	if action == AT.ActionType.Raise:
+		var to_raise: PackedScene = tilemap.get_tile(pos).raised
+		var unit: Node = to_raise.instantiate()
+		unit.mappos = pos
+		unit.position = tilemap.map_to_local(pos)
+		unit.tilemap = tilemap
+		get_parent().add_child(unit)
+		print("raised the dead")
 
 func selectable() -> Selectable:
 	#todo: get these value from actual unit
@@ -84,11 +98,27 @@ func selectable() -> Selectable:
 		"max_health": max_health,
 		"health": health
 	}
-	var attackAction: Selectable.Action = Selectable.Action.new()
-	attackAction.title = "Attack"
-	attackAction.enabled = false
-	attackAction.disabled_reason = "no enemies in range"
-	attackAction.stats = {"action_cost": 3}
-	selectable.actions = [attackAction]
+	selectable.actions = []
+	for action in actions:
+		var sa: Selectable.Action = Selectable.Action.new()
+		var cost = AT.cost(action)
+		sa.stats = {"action_cost": cost}
+		sa.enabled = true
+		sa.title = AT.title(action)
+		print(sa.title, " ", targets(action))
+		if cost > action_points:
+			sa.enabled = false
+			sa.disabled_reason = "Not enough action points"
+		elif targets(action).size() == 0:
+			sa.enabled = false
+			sa.disabled_reason = "No available target nearby"
+		selectable.actions.push_back(sa)
+			
+	#var attackAction: Selectable.Action = Selectable.Action.new()
+	#attackAction.title = "Attack"
+	#attackAction.enabled = false
+	#attackAction.disabled_reason = "no enemies in range"
+	#attackAction.stats = {"action_cost": 3}
+	#selectable.actions = [attackAction]
 	return selectable
 	

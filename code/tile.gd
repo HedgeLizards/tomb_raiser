@@ -11,11 +11,12 @@ var raised: PackedScene = null
 #var tile_source: int = 0
 #var atlas_coord: Vector2i
 
-func _init(walk_cost: int, title: String, description: String) -> void:
+func _init(walk_cost: int, title: String, description: String, settings: Dictionary = {}) -> void:
 	self.walkable = walk_cost >= 0
 	self.walk_cost = walk_cost
 	self.title = title
 	self.description = description
+	self.raised = settings.get("raised")
 	#self.tile_source = tile_source
 	#self.atlas_coord = atlas_coord
 

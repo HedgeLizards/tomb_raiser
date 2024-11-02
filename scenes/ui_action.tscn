@@ -99,5 +99,6 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_v2tc8")
 theme_override_font_sizes/font_size = 16
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
