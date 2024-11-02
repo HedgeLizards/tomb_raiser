@@ -1,8 +1,11 @@
-extends Sprite2D
+extends Node2D
 
+
+enum ActionType {Attack, Raise, Heal}
+@export var actions: Array[ActionType]
 
 @export var tilemap: TileMapLayer
-@export var unit_name: String
+@export var title: String
 @export var max_health: int
 @export var max_action_points: int
 
@@ -11,21 +14,26 @@ var mappos: Vector2i
 @onready var health = max_health
 
 
+
 func _ready() -> void:
 	mappos = tilemap.local_to_map(position)
 	position = tilemap.map_to_local(mappos)
 
+func reset_turn() -> void:
+	action_points = max_action_points
+
 func can_walk_to(pos: Vector2i) -> bool:
 	return walkable_tiles().has(pos)
 
-func walk_to(pos: Vector2) -> void:
+func walk_to(pos: Vector2i) -> void:
+	var cost: int = walkable_tiles()[pos].cost
+	action_points -= cost
 	mappos = pos
 	# todo: animation
 	position = tilemap.map_to_local(mappos)
 
 func can_do_action() -> bool:
-	# todo: action points
-	return true
+	return action_points > 0
 
 
 class WalkTile:
@@ -48,16 +56,17 @@ func walkable_tiles() -> Dictionary:
 		visited[tile.pos] = tile
 		for neighbour: Vector2i in tilemap.get_surrounding_cells(tile.pos):
 			var tiledata: Tile = tilemap.get_tile(neighbour)
-			var cost: int = tile.cost + tiledata.walk_cost
-			if tiledata.walkable && cost <= action_points:
-				frontier.push_back(WalkTile.new(neighbour, cost))
+			if tiledata and tiledata.walkable:
+				var cost: int = tile.cost + tiledata.walk_cost
+				if cost <= action_points:
+					frontier.push_back(WalkTile.new(neighbour, cost))
 	var end = Time.get_ticks_msec()
 	return visited
 
 func selectable() -> Selectable:
 	#todo: get these value from actual unit
 	var selectable: Selectable = Selectable.new()
-	selectable.title = "Skeleton"
+	selectable.title = title
 	selectable.stats = {
 		"max_action_points": max_action_points,
 		"action_points": action_points,

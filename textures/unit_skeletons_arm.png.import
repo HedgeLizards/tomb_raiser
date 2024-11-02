@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ebsptar5d3m"
-path="res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.ctex"
+uid="uid://blepcxcs4aamn"
+path="res://.godot/imported/unit_skeletons_arm.png-11cf7e201e422b2032c58d2fe1962de9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/water.png"
-dest_files=["res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.ctex"]
+source_file="res://textures/unit_skeletons_arm.png"
+dest_files=["res://.godot/imported/unit_skeletons_arm.png-11cf7e201e422b2032c58d2fe1962de9.ctex"]
 
 [params]
 

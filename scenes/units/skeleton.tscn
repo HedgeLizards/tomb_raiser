@@ -1,16 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://ykcb75qijlq"]
+[gd_scene load_steps=11 format=3 uid="uid://ykcb75qijlq"]
 
 [ext_resource type="Script" path="res://code/unit.gd" id="2_kjdw6"]
 [ext_resource type="Texture2D" uid="uid://dulxf80dhp26y" path="res://textures/unit_shadow.png" id="2_kjsqr"]
 [ext_resource type="Texture2D" uid="uid://d4u7hvr1mncg" path="res://textures/unit_skeletons.png" id="2_y48cn"]
 [ext_resource type="Texture2D" uid="uid://dbveopw4m131r" path="res://textures/unit_skeleton_legs.png" id="3_uvbae"]
+[ext_resource type="Texture2D" uid="uid://blepcxcs4aamn" path="res://textures/unit_skeletons_arm.png" id="5_fvwi7"]
+[ext_resource type="Texture2D" uid="uid://d080jo230s2ok" path="res://textures/unit_skeleton_head.png" id="6_qgasr"]
+
+[sub_resource type="Animation" id="Animation_jvygf"]
+resource_name = "Popup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.533333, 0.733333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.7, 0.7), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkeletonPuppet:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.533333, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -300), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_y0fdg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UnitSkeletons:rotation")
+tracks/0/path = NodePath("SkeletonPuppet/UnitSkeletons:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -18,6 +47,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_iei02"]
@@ -27,7 +68,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UnitSkeletons:rotation")
+tracks/0/path = NodePath("SkeletonPuppet/UnitSkeletons:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,36 +77,77 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0698132, -0.0698132]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkeletonPuppet/UnitSkeletons/UnitSkeletonsArm:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.349066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SkeletonPuppet/UnitSkeletons/UnitSkeletonHead:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.933333, 1.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.122173, -0.122173]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3sqys"]
 _data = {
+"Popup": SubResource("Animation_jvygf"),
 "RESET": SubResource("Animation_y0fdg"),
 "Wiggle": SubResource("Animation_iei02")
 }
 
-[node name="Skeleton" type="Sprite2D"]
+[node name="Skeleton" type="Node2D"]
 z_index = 1
 z_as_relative = false
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_kjdw6")
-unit_name = "Skeleton"
+title = "Skeleton"
 max_health = 3
 max_action_points = 3
 
 [node name="UnitShadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_kjsqr")
 
-[node name="UnitSkeletonLegs" type="Sprite2D" parent="."]
-position = Vector2(0, -292)
-texture = ExtResource("3_uvbae")
-
-[node name="UnitSkeletons" type="Sprite2D" parent="."]
-position = Vector2(20, -268)
-texture = ExtResource("2_y48cn")
-offset = Vector2(-20, -30)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3sqys")
 }
-autoplay = "Wiggle"
+autoplay = "Popup"
+
+[node name="SkeletonPuppet" type="Node2D" parent="."]
+position = Vector2(0, -300)
+
+[node name="UnitSkeletonLegs" type="Sprite2D" parent="SkeletonPuppet"]
+position = Vector2(0, -292)
+texture = ExtResource("3_uvbae")
+
+[node name="UnitSkeletons" type="Sprite2D" parent="SkeletonPuppet"]
+position = Vector2(20, -268)
+texture = ExtResource("2_y48cn")
+offset = Vector2(-20, -30)
+
+[node name="UnitSkeletonsArm" type="Sprite2D" parent="SkeletonPuppet/UnitSkeletons"]
+position = Vector2(-154, -26)
+rotation = -0.339292
+texture = ExtResource("5_fvwi7")
+offset = Vector2(-21.57, -146.6)
+
+[node name="UnitSkeletonHead" type="Sprite2D" parent="SkeletonPuppet/UnitSkeletons"]
+position = Vector2(-22, -156)
+rotation = -0.11906
+scale = Vector2(1.17737, 1.17737)
+texture = ExtResource("6_qgasr")
+offset = Vector2(-2.17, -46.19)

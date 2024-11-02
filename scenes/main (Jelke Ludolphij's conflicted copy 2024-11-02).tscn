@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=15 format=4 uid="uid://ba6qjddxcbjdt"]
 
 [ext_resource type="Script" path="res://code/MapCamera2D.gd" id="1_7m1iq"]
-[ext_resource type="Script" path="res://code/main.gd" id="1_12yn6"]
 [ext_resource type="Script" path="res://code/cursor.gd" id="1_n1hes"]
 [ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selected.tscn" id="3_jehwe"]
 [ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/units/skeleton.tscn" id="3_t8oo7"]
@@ -9,7 +8,7 @@
 [ext_resource type="Script" path="res://code/units.gd" id="4_dld28"]
 [ext_resource type="Script" path="res://code/ground.gd" id="4_ytyvg"]
 [ext_resource type="PackedScene" uid="uid://05rsgs1cwttg" path="res://scenes/units/necromancer.tscn" id="6_mgcqv"]
-[ext_resource type="PackedScene" path="res://scenes/music.tscn" id="10_ku836"]
+[ext_resource type="PackedScene" uid="uid://dfr5m2k6trtw7" path="res://scenes/music.tscn" id="10_ku836"]
 [ext_resource type="PackedScene" uid="uid://cyerdrm61isi0" path="res://scenes/ui.tscn" id="10_s3ry7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_unqnr"]
@@ -39,7 +38,6 @@ tile_size = Vector2i(400, 400)
 sources/0 = SubResource("TileSetScenesCollectionSource_8cjmg")
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_12yn6")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
@@ -50,6 +48,7 @@ script = ExtResource("4_ytyvg")
 
 [node name="Selections" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_dyrtn")
 
 [node name="Units" type="Node2D" parent="."]
@@ -58,23 +57,19 @@ script = ExtResource("4_dld28")
 
 [node name="Skeleton" parent="Units" node_paths=PackedStringArray("tilemap") instance=ExtResource("3_t8oo7")]
 position = Vector2(406, 259)
-scale = Vector2(0.7, 0.7)
 tilemap = NodePath("../../Ground")
 
 [node name="Skeleton2" parent="Units" instance=ExtResource("3_t8oo7")]
 position = Vector2(-1321, 190)
-scale = Vector2(0.7, 0.7)
 
 [node name="Necromancer" parent="Units" instance=ExtResource("6_mgcqv")]
 position = Vector2(-399, 1197)
-scale = Vector2(0.7, 0.7)
 
 [node name="Cursor" type="Node" parent="."]
 script = ExtResource("1_n1hes")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
-limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("1_7m1iq")
 zoom_min = 0.05
@@ -87,4 +82,3 @@ drag_inertia = 0.0
 [node name="Music" parent="." instance=ExtResource("10_ku836")]
 
 [connection signal="selection_changed" from="Cursor" to="UI" method="_on_cursor_selection_changed"]
-[connection signal="end_turn_pressed" from="UI" to="." method="_on_ui_end_turn_pressed"]

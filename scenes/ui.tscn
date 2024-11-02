@@ -243,5 +243,6 @@ theme_override_constants/separation = 16
 [connection signal="gui_input" from="Quit" to="." method="_on_quit_gui_input"]
 [connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_exited" from="Quit" to="." method="_on_quit_mouse_exited"]
+[connection signal="gui_input" from="Turn" to="." method="_on_turn_gui_input"]
 [connection signal="mouse_entered" from="Turn" to="." method="_on_turn_mouse_entered"]
 [connection signal="mouse_exited" from="Turn" to="." method="_on_turn_mouse_exited"]

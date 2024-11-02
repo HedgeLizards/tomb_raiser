@@ -2,6 +2,8 @@ extends CanvasLayer
 
 const UIAction = preload('res://scenes/ui_action.tscn')
 
+signal end_turn_pressed
+
 func _ready():
 	if OS.has_feature('web'):
 		%exit.queue_free()
@@ -83,6 +85,10 @@ func _on_quit_mouse_entered():
 func _on_quit_mouse_exited():
 	$Quit.get_theme_stylebox('panel').bg_color = Color.TRANSPARENT
 	$Quit/HBoxContainer/Label.visible = false
+
+func _on_turn_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		end_turn_pressed.emit()
 
 func _on_turn_mouse_entered():
 	$Turn.get_theme_stylebox('panel').bg_color = Color8(96, 96, 96)
