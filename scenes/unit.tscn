@@ -85,4 +85,3 @@ root_node = NodePath("../UnitSkeletons")
 libraries = {
 "": SubResource("AnimationLibrary_jxwfr")
 }
-autoplay = "hover"
