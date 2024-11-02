@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dulxf80dhp26y" path="res://textures/unit_shadow.png" id="2_kjsqr"]
 [ext_resource type="Texture2D" uid="uid://d4u7hvr1mncg" path="res://textures/unit_skeletons.png" id="2_y48cn"]
 
-[node name="Unit" type="Sprite2D"]
+[node name="Skeleton" type="Sprite2D"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_y48cn")
 offset = Vector2(0, -300)
