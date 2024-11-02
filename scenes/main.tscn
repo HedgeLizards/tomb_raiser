@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=10 format=4 uid="uid://ba6qjddxcbjdt"]
 
 [ext_resource type="PackedScene" uid="uid://dkuc368kt8yd4" path="res://scenes/tiles/grass.tscn" id="1_hl2yr"]
+[ext_resource type="Script" path="res://code/cursor.gd" id="1_n1hes"]
 [ext_resource type="PackedScene" uid="uid://c8our1tju6by1" path="res://scenes/tiles/sea.tscn" id="2_06ss3"]
+[ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selected.tscn" id="3_jehwe"]
+[ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/units/necromancer.tscn" id="3_t8oo7"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_o1kb8"]
 resource_name = "ground"
@@ -13,9 +16,33 @@ tile_shape = 3
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetScenesCollectionSource_o1kb8")
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8cjmg"]
+scenes/1/scene = ExtResource("3_jehwe")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[sub_resource type="TileSet" id="TileSet_dyrtn"]
+tile_shape = 3
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_8cjmg")
+
+[node name="Main" type="Node2D"]
+
+[node name="Ground" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAQABAAEAAAAAAAAAAQAEAAAAAAAAAAAAAQACAAAAAAAAAAAAAQADAAIAAAAAAAAAAgABAAAAAAAAAAAAAgAAAAIAAAAAAAAAAgD+/wEAAAAAAAAAAgD/////AAAAAAAAAgAAAP//AAAAAAAAAQD//wIAAAAAAAAAAQACAP7/AAAAAAAAAQABAP//AAAAAAAAAQAHAAkAAAAAAAAAAQAHAAcAAAAAAAAAAQAIAAgAAAAAAAAAAgA=")
 tile_set = SubResource("TileSet_45ciy")
+
+[node name="Selections" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_dyrtn")
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Necromancer" parent="Units" node_paths=PackedStringArray("tilemap") instance=ExtResource("3_t8oo7")]
+position = Vector2(406, 259)
+tilemap = NodePath("../../Ground")
+
+[node name="Cursor" type="Node" parent="."]
+script = ExtResource("1_n1hes")
+
+[connection signal="select_pressed" from="Units/Necromancer" to="Cursor" method="_on_unit_select_pressed"]
