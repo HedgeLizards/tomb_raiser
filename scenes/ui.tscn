@@ -1,0 +1,228 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyerdrm61isi0"]
+
+[ext_resource type="FontFile" uid="uid://cnscda1b375x8" path="res://fonts/KaushanScript-Regular.otf" id="1_0r02a"]
+[ext_resource type="Script" path="res://code/ui.gd" id="1_h1b74"]
+[ext_resource type="FontFile" uid="uid://c5lt350go4m85" path="res://fonts/Quicksand-Bold.otf" id="2_qxa3q"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_h1b74")
+
+[node name="Quit" type="PanelContainer" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 42.0
+offset_bottom = 47.0
+mouse_default_cursor_shape = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Quit"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Quit/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="Label" parent="Quit/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_font_sizes/font_size = 24
+text = "🏠"
+
+[node name="Label" type="Label" parent="Quit/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[node name="Turn" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 16.0
+offset_right = -16.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_font_sizes/font_size = 24
+text = "End turn"
+
+[node name="Bottom" type="VBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="Bottom"]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="Bottom/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Bottom/Control/Title"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bottom/Control/Title/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bottom/Control/Title/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+text = "Necromancer"
+
+[node name="ActionPoints" type="PanelContainer" parent="Bottom/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Bottom/Control/ActionPoints"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bottom/Control/ActionPoints/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bottom/Control/ActionPoints/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+text = "Action points: 5/10"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Bottom"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Bottom/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Bottom/ScrollContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Actions" type="HBoxContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Action1" type="PanelContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action1"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action1/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_0r02a")
+theme_override_font_sizes/font_size = 32
+text = "Heal Undead"
+
+[node name="Stats" type="HBoxContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action1/MarginContainer/VBoxContainer/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_font_sizes/font_size = 16
+text = "2 action points, 3 range"
+
+[node name="Error" type="Label" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 1)
+theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_font_sizes/font_size = 16
+text = "(no undead in range)"
+
+[node name="Action2" type="PanelContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action2"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_0r02a")
+theme_override_font_sizes/font_size = 32
+text = "Raise Undead"
+
+[node name="Stats" type="HBoxContainer" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action2/MarginContainer/VBoxContainer/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_font_sizes/font_size = 16
+text = "3 action points, 2 range"
+
+[node name="Error" type="Label" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer/Actions/Action2/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 1)
+theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_font_sizes/font_size = 16
+text = "(no bones in range)"
+
+[node name="Description" type="Label" parent="Bottom/ScrollContainer/PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "Tile / enemy description goes here."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="gui_input" from="Quit" to="." method="_on_quit_gui_input"]
+[connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="Quit" to="." method="_on_quit_mouse_exited"]
