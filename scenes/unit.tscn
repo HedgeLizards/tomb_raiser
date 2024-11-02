@@ -6,11 +6,9 @@
 
 [node name="Unit" type="Sprite2D"]
 scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_y48cn")
+offset = Vector2(0, -300)
 script = ExtResource("2_kjdw6")
 
 [node name="UnitShadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_kjsqr")
-
-[node name="UnitSkeletons" type="Sprite2D" parent="."]
-position = Vector2(4, -290)
-texture = ExtResource("2_y48cn")
