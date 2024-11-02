@@ -9,7 +9,7 @@ func _on_cursor_selection_changed(selected):
 		return
 	
 	%Title/HBoxContainer/Label.text = selected.title # selected.stats.health
-	%Stats/HBoxContainer/Label.text = 'Action points: %d' % selected.stats.action_points
+	#%Stats/HBoxContainer/Label.text = 'Action points: %d' % selected.stats.action_points
 	
 	if selected.actions.is_empty():
 		%Description.text = selected.description

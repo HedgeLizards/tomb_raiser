@@ -77,7 +77,6 @@ texture = ExtResource("2_kjsqr")
 
 [node name="UnitSkeletons" type="Sprite2D" parent="."]
 position = Vector2(2, -66)
-scale = Vector2(0.185, 0.185)
 texture = ExtResource("2_y48cn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

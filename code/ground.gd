@@ -7,17 +7,18 @@ var MOUNTAIN: Tile = Tile.new(2, "Grass", "A tall mountain")
 
 
 var tile_index = {
-	Vector2(0, 0): WATER,
-	Vector2(0, 1): GRASS,
-	Vector2(0, 2): MOUNTAIN
+	Vector2i(0, 0): WATER,
+	Vector2i(1, 0): GRASS,
+	Vector2i(2, 0): MOUNTAIN
 }
 
 func get_tile(pos: Vector2i) -> Tile:
 	if get_cell_source_id(pos) != 1:
 		return null
 	var tile = tile_index.get(get_cell_atlas_coords(pos))
-	print("tile ", tile)
-	return tile_index.get(get_cell_atlas_coords(pos))
+	
+	#print("tile ", tile, " ", get_cell_atlas_coords(pos))s
+	return tile
 	#var source = tile_set.get_source(get_cell_source_id(pos))
 	##print("source ", source)
 	#var scene = source.get_scene_tile_scene(get_cell_alternative_tile(pos))

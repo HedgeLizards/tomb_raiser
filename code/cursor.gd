@@ -79,4 +79,4 @@ func tile_clicked(pos: Vector2i) -> void:
 		return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:
-		pass
+		select_tile(tile)
