@@ -60,6 +60,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	tile_clicked(clicked_tile)
 
 func tile_clicked(pos: Vector2i) -> void:
+	var unit: Node2D = %Units.unit_at(pos)
+	if unit != null:
+		select_unit(unit)
+		return
 	if selected_unit:
 		if pos == selected_unit.mappos:
 			clear_select()
@@ -71,10 +75,6 @@ func tile_clicked(pos: Vector2i) -> void:
 			else:
 				clear_select()
 			return
-	var unit: Node2D = %Units.unit_at(pos)
-	if unit != null:
-		select_unit(unit)
-		return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:
 		select_tile(tile)
