@@ -8,11 +8,8 @@ var walk_range = 5 # todo: base on unit type / action points
 
 
 func _ready() -> void:
-	print("unit ready")
 	mappos = tilemap.local_to_map(position)
 	position = tilemap.map_to_local(mappos)
-
-
 
 func can_walk_to(pos: Vector2i) -> bool:
 	return walkable_tiles().has(pos)
@@ -50,7 +47,6 @@ func walkable_tiles() -> Dictionary:
 				#tile = tilemap.get
 				frontier.push_back(WalkTile.new(neighbour, tile.cost + 1))
 	var end = Time.get_ticks_msec()
-	print("time: ", end - start)
 	return visited
 
 func selectable() -> Selectable:

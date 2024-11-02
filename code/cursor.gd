@@ -10,8 +10,6 @@ var selected_tile: Tile = null
 const NOT_CLICKING: Vector2 = Vector2(-1_000_000, -1_000_000)
 var click_start: Vector2 = NOT_CLICKING
 
-func _ready() -> void:
-	print("cursor ready")
 
 func clear_select() -> void:
 	self.selected_unit = null
