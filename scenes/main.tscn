@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://code/cursor.gd" id="1_n1hes"]
 [ext_resource type="PackedScene" uid="uid://c8our1tju6by1" path="res://scenes/tiles/sea.tscn" id="2_06ss3"]
 [ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selected.tscn" id="3_jehwe"]
-[ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/units/necromancer.tscn" id="3_t8oo7"]
+[ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/unit.tscn" id="3_t8oo7"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_o1kb8"]
 resource_name = "ground"
@@ -34,6 +34,7 @@ tile_set = SubResource("TileSet_45ciy")
 
 [node name="Selections" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAHAAMAAAAAAAAAAQAGAAMAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_dyrtn")
 
 [node name="Units" type="Node2D" parent="."]
