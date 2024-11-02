@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh78c31mr60x3"]
 
 [ext_resource type="Texture2D" uid="uid://b7rov0qo1giws" path="res://textures/mountain.png" id="1_grpy1"]
-[ext_resource type="Script" path="res://code/tile.gd" id="2_qchkk"]
+[ext_resource type="Script" path="res://code/tileinstance.gd" id="2_qchkk"]
 
 [node name="Mountain" type="Sprite2D"]
 scale = Vector2(0.08, 0.08)

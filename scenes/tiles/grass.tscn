@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkuc368kt8yd4"]
 
 [ext_resource type="Texture2D" uid="uid://df1bal00nkhbp" path="res://textures/grass.png" id="1_6mp2i"]
-[ext_resource type="Script" path="res://code/tile.gd" id="2_0slly"]
+[ext_resource type="Script" path="res://code/tileinstance.gd" id="2_0slly"]
 
 [node name="Grass" type="Sprite2D"]
 scale = Vector2(0.08, 0.08)

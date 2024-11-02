@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8our1tju6by1"]
 
 [ext_resource type="Texture2D" uid="uid://davrb1lnpxo53" path="res://textures/sea.png" id="1_71p60"]
-[ext_resource type="Script" path="res://code/tile.gd" id="2_5ghry"]
+[ext_resource type="Script" path="res://code/tileinstance.gd" id="2_5ghry"]
 
 [node name="Sea" type="Sprite2D"]
 scale = Vector2(0.08, 0.08)
