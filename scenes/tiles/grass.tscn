@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://df1bal00nkhbp" path="res://textures/grass.png" id="1_6mp2i"]
 
 [node name="Grass" type="Sprite2D"]
+scale = Vector2(0.08, 0.08)
 texture = ExtResource("1_6mp2i")
