@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7rov0qo1giws"
-valid=false
+path="res://.godot/imported/mountain.png-63a4c2f311b3882f521ac3124f108bf2.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://textures/mountain.png"
+dest_files=["res://.godot/imported/mountain.png-63a4c2f311b3882f521ac3124f108bf2.ctex"]
 
 [params]
 
