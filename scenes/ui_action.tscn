@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu4wn36lrk5at"]
+[gd_scene load_steps=9 format=3 uid="uid://bu4wn36lrk5at"]
 
 [ext_resource type="FontFile" uid="uid://cnscda1b375x8" path="res://fonts/KaushanScript-Regular.otf" id="1_i6qc0"]
 [ext_resource type="Script" path="res://code/ui_action.gd" id="1_ksftg"]
 [ext_resource type="FontFile" uid="uid://c5lt350go4m85" path="res://fonts/Quicksand-Bold.otf" id="2_v2tc8"]
+[ext_resource type="Texture2D" uid="uid://dglraxnbpak7n" path="res://textures/UI/UI_ActionPoint_250px_trimmed.png" id="4_l1i26"]
+[ext_resource type="Texture2D" uid="uid://dmbwyghr0eoyt" path="res://textures/UI/UI_Range_250px_trimmed.png" id="5_oq0ta"]
+[ext_resource type="Texture2D" uid="uid://dclepu8675isk" path="res://textures/UI/UI_Sword_250px_trimmed.png" id="6_3some"]
+[ext_resource type="Texture2D" uid="uid://cuxbhedar8bnq" path="res://textures/UI/UI_Heart_250px_trimmed.png" id="7_pibua"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j480g"]
 resource_local_to_scene = true
@@ -23,7 +27,6 @@ corner_radius_bottom_left = 4
 corner_detail = 4
 
 [node name="UIAction" type="PanelContainer"]
-mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j480g")
 script = ExtResource("1_ksftg")
 
@@ -42,13 +45,55 @@ theme_override_font_sizes/font_size = 32
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats"]
+[node name="ActionCost" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/ActionCost"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_v2tc8")
-theme_override_font_sizes/font_size = 16
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/ActionCost"]
+layout_mode = 2
+texture = ExtResource("4_l1i26")
+expand_mode = 3
+
+[node name="Healing" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/Healing"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v2tc8")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/Healing"]
+layout_mode = 2
+texture = ExtResource("7_pibua")
+expand_mode = 3
+
+[node name="Damage" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/Damage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v2tc8")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/Damage"]
+layout_mode = 2
+texture = ExtResource("6_3some")
+expand_mode = 3
+
+[node name="Range" type="HBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/Range"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v2tc8")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/Range"]
+layout_mode = 2
+texture = ExtResource("5_oq0ta")
+expand_mode = 3
 
 [node name="DisabledReason" type="Label" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_v2tc8")
