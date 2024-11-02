@@ -1,11 +1,25 @@
 extends ColorRect
 
+func _ready():
+	if AudioServer.is_bus_mute(0):
+		$Audio.texture = preload('res://textures/UI/UI_SoundOff_250px_trimmed.png')
+
+func toggle_audio():
+	if AudioServer.is_bus_mute(0):
+		AudioServer.set_bus_mute(0, false)
+		
+		$Audio.texture = preload('res://textures/UI/UI_SoundOn_250px_trimmed.png')
+	else:
+		AudioServer.set_bus_mute(0, true)
+		
+		$Audio.texture = preload('res://textures/UI/UI_SoundOff_250px_trimmed.png')
+
 func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_ESCAPE:
 			get_tree().quit()
 		elif event.keycode == KEY_M:
-			AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+			toggle_audio()
 
 func _on_play_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -29,4 +43,4 @@ func _on_exit_mouse_exited():
 
 func _on_audio_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+		toggle_audio()

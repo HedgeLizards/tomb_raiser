@@ -24,7 +24,7 @@ func _on_cursor_selection_changed(selected):
 		%Stats/HBoxContainer/ActionPoints.visible = false
 	
 	if selected.stats.has('walk_cost'):
-		%Stats/HBoxContainer/ActionCost/Label.text = 'Action cost: %d' % (selected.stats.walk_cost if selected.stats.walkable else '∞')
+		%Stats/HBoxContainer/ActionCost/Label.text = 'Action cost: %s' % (selected.stats.walk_cost if selected.stats.walkable else '∞')
 		%Stats/HBoxContainer/ActionCost.visible = true
 	else:
 		%Stats/HBoxContainer/ActionCost.visible = false
