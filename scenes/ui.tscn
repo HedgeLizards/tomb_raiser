@@ -1,8 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyerdrm61isi0"]
+[gd_scene load_steps=16 format=3 uid="uid://cyerdrm61isi0"]
 
 [ext_resource type="Script" path="res://code/ui.gd" id="1_h1b74"]
+[ext_resource type="Texture2D" uid="uid://rmogamcnh51a" path="res://textures/UI/UI_Home_250px_trimmed.png" id="2_5ajoc"]
 [ext_resource type="FontFile" uid="uid://c5lt350go4m85" path="res://fonts/Quicksand-Bold.otf" id="2_qxa3q"]
 [ext_resource type="FontFile" uid="uid://cnscda1b375x8" path="res://fonts/KaushanScript-Regular.otf" id="3_o4gh3"]
+[ext_resource type="Texture2D" uid="uid://dglraxnbpak7n" path="res://textures/UI/UI_ActionPoint_250px_trimmed.png" id="4_q1imq"]
+[ext_resource type="Texture2D" uid="uid://cuxbhedar8bnq" path="res://textures/UI/UI_Heart_250px_trimmed.png" id="5_dycda"]
+[ext_resource type="Texture2D" uid="uid://dclepu8675isk" path="res://textures/UI/UI_Sword_250px_trimmed.png" id="6_wnmnf"]
+[ext_resource type="Texture2D" uid="uid://dmbwyghr0eoyt" path="res://textures/UI/UI_Range_250px_trimmed.png" id="7_p6kf7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eycg"]
 content_margin_left = 4.0
@@ -74,11 +79,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7eycg")
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Icon" type="Label" parent="Quit/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Quit/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qxa3q")
-theme_override_font_sizes/font_size = 24
-text = "🏠"
+texture = ExtResource("2_5ajoc")
+expand_mode = 3
 
 [node name="Label" type="Label" parent="Quit/HBoxContainer"]
 visible = false
@@ -128,10 +133,7 @@ offset_right = 40.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fgo0a")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Selection/Control/Title"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Selection/Control/Title/HBoxContainer"]
+[node name="Label" type="Label" parent="Selection/Control/Title"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qxa3q")
 
@@ -152,9 +154,65 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_e4hb3")
 [node name="HBoxContainer" type="HBoxContainer" parent="Selection/Control/Stats"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Selection/Control/Stats/HBoxContainer"]
+[node name="ActionPoints" type="HBoxContainer" parent="Selection/Control/Stats/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Selection/Control/Stats/HBoxContainer/ActionPoints"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qxa3q")
+
+[node name="TextureRect" type="TextureRect" parent="Selection/Control/Stats/HBoxContainer/ActionPoints"]
+layout_mode = 2
+texture = ExtResource("4_q1imq")
+expand_mode = 3
+
+[node name="ActionCost" type="HBoxContainer" parent="Selection/Control/Stats/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Selection/Control/Stats/HBoxContainer/ActionCost"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+
+[node name="TextureRect" type="TextureRect" parent="Selection/Control/Stats/HBoxContainer/ActionCost"]
+layout_mode = 2
+texture = ExtResource("4_q1imq")
+expand_mode = 3
+
+[node name="Health" type="HBoxContainer" parent="Selection/Control/Stats/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Selection/Control/Stats/HBoxContainer/Health"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+
+[node name="TextureRect" type="TextureRect" parent="Selection/Control/Stats/HBoxContainer/Health"]
+layout_mode = 2
+texture = ExtResource("5_dycda")
+expand_mode = 3
+
+[node name="Damage" type="HBoxContainer" parent="Selection/Control/Stats/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Selection/Control/Stats/HBoxContainer/Damage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+
+[node name="TextureRect" type="TextureRect" parent="Selection/Control/Stats/HBoxContainer/Damage"]
+layout_mode = 2
+texture = ExtResource("6_wnmnf")
+expand_mode = 3
+
+[node name="Range" type="HBoxContainer" parent="Selection/Control/Stats/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Selection/Control/Stats/HBoxContainer/Range"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qxa3q")
+
+[node name="TextureRect" type="TextureRect" parent="Selection/Control/Stats/HBoxContainer/Range"]
+layout_mode = 2
+texture = ExtResource("7_p6kf7")
+expand_mode = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Selection"]
 layout_mode = 2

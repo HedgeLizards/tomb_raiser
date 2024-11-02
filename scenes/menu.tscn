@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m5fwye31fln4"]
+[gd_scene load_steps=8 format=3 uid="uid://m5fwye31fln4"]
 
 [ext_resource type="FontFile" uid="uid://cnscda1b375x8" path="res://fonts/KaushanScript-Regular.otf" id="1_h7qny"]
 [ext_resource type="Script" path="res://code/menu.gd" id="1_p3q3q"]
@@ -7,6 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://3mcv38xr160h" path="res://icon.svg" id="4_s3loq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xig0c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.768627)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1agkk"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -55,7 +67,6 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nfa6v")
-theme_override_font_sizes/font_size = 16
 text = "Difficulty"
 
 [node name="Difficulty" type="HSlider" parent="VBoxContainer/HBoxContainer"]
@@ -75,6 +86,19 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nfa6v")
 theme_override_font_sizes/font_size = 32
 text = "Play"
+
+[node name="Exit" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1agkk")
+
+[node name="Label" type="Label" parent="VBoxContainer/Exit"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nfa6v")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
 
 [node name="Logo" type="TextureRect" parent="."]
 texture_filter = 4
@@ -101,9 +125,15 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("4_s3loq")
 expand_mode = 1
 
 [connection signal="gui_input" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_gui_input"]
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_mouse_exited"]
+[connection signal="gui_input" from="VBoxContainer/Exit" to="." method="_on_exit_gui_input"]
+[connection signal="mouse_entered" from="VBoxContainer/Exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Exit" to="." method="_on_exit_mouse_exited"]
+[connection signal="gui_input" from="Audio" to="." method="_on_audio_gui_input"]
