@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7rov0qo1giws"
-valid=false
+uid="uid://djo8v3rwanal1"
+path="res://.godot/imported/dootsheet.png-43b17123798790e4f6b77ceca352cf78.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://textures/mountain.png"
+source_file="res://textures/player/dootsheet.png"
+dest_files=["res://.godot/imported/dootsheet.png-43b17123798790e4f6b77ceca352cf78.ctex"]
 
 [params]
 

@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7rov0qo1giws"
-valid=false
+uid="uid://dx7qmo8ht6qxu"
+path="res://.godot/imported/mountain copy.png-573dc0b0b4e6c07b0b1ceec3fbd18e11.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://textures/mountain.png"
+source_file="res://textures/mountain copy.png"
+dest_files=["res://.godot/imported/mountain copy.png-573dc0b0b4e6c07b0b1ceec3fbd18e11.ctex"]
 
 [params]
 
