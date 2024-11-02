@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=17 format=4 uid="uid://ba6qjddxcbjdt"]
 
 [ext_resource type="Script" path="res://code/MapCamera2D.gd" id="1_7m1iq"]
 [ext_resource type="PackedScene" uid="uid://dkuc368kt8yd4" path="res://scenes/tiles/grass.tscn" id="1_hl2yr"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b8eybwy033ap8" path="res://textures/Tiles_atlas.png" id="4_48aqy"]
 [ext_resource type="Script" path="res://code/units.gd" id="4_dld28"]
 [ext_resource type="Script" path="res://code/ground.gd" id="4_ytyvg"]
+[ext_resource type="PackedScene" uid="uid://cyerdrm61isi0" path="res://scenes/ui.tscn" id="10_s3ry7"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_o1kb8"]
 resource_name = "ground"
@@ -552,3 +553,7 @@ position_smoothing_enabled = true
 script = ExtResource("1_7m1iq")
 pan_margin = 0.0
 drag_inertia = 0.0
+
+[node name="UI" parent="." instance=ExtResource("10_s3ry7")]
+
+[connection signal="selection_changed" from="Cursor" to="UI" method="_on_cursor_selection_changed"]
