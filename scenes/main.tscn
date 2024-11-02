@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=11 format=4 uid="uid://ba6qjddxcbjdt"]
 
+[ext_resource type="Script" path="res://code/MapCamera2D.gd" id="1_7m1iq"]
 [ext_resource type="PackedScene" uid="uid://dkuc368kt8yd4" path="res://scenes/tiles/grass.tscn" id="1_hl2yr"]
 [ext_resource type="Script" path="res://code/cursor.gd" id="1_n1hes"]
 [ext_resource type="PackedScene" uid="uid://c8our1tju6by1" path="res://scenes/tiles/sea.tscn" id="2_06ss3"]
@@ -44,5 +45,10 @@ tilemap = NodePath("../../Ground")
 
 [node name="Cursor" type="Node" parent="."]
 script = ExtResource("1_n1hes")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+script = ExtResource("1_7m1iq")
+pan_margin = 0.0
 
 [connection signal="select_pressed" from="Units/Necromancer" to="Cursor" method="_on_unit_select_pressed"]
