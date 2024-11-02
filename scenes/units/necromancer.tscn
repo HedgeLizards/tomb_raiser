@@ -73,6 +73,7 @@ position = Vector2(0, -72)
 scale = Vector2(0.5, 0.5)
 offset = Vector2(0, -300)
 script = ExtResource("2_lgfq1")
+title = "Necromancer"
 max_health = 5
 max_action_points = 5
 

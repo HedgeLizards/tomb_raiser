@@ -2,7 +2,7 @@ extends Sprite2D
 
 
 @export var tilemap: TileMapLayer
-@export var unit_name: String
+@export var title: String
 @export var max_health: int
 @export var max_action_points: int
 
@@ -58,7 +58,7 @@ func walkable_tiles() -> Dictionary:
 func selectable() -> Selectable:
 	#todo: get these value from actual unit
 	var selectable: Selectable = Selectable.new()
-	selectable.title = "Skeleton"
+	selectable.title = title
 	selectable.stats = {
 		"max_action_points": max_action_points,
 		"action_points": action_points,
