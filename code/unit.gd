@@ -52,3 +52,17 @@ func walkable_tiles() -> Dictionary:
 	var end = Time.get_ticks_msec()
 	print("time: ", end - start)
 	return visited
+
+func selectable() -> Selectable:
+	#todo: get these value from actual unit
+	var selectable: Selectable = Selectable.new()
+	selectable.title = "Skeleton"
+	selectable.stats = {"action_points": 10, "health": 3}
+	var attackAction: Selectable.Action = Selectable.Action.new()
+	attackAction.title = "Attack"
+	attackAction.enabled = false
+	attackAction.disabled_reason = "no enemies in range"
+	attackAction.stats = {"action_cost": 3}
+	selectable.actions = [attackAction]
+	return selectable
+	
