@@ -73,6 +73,8 @@ position = Vector2(0, -72)
 scale = Vector2(0.5, 0.5)
 offset = Vector2(0, -300)
 script = ExtResource("2_lgfq1")
+max_health = 5
+max_action_points = 5
 
 [node name="UnitShadow" type="Sprite2D" parent="."]
 z_as_relative = false

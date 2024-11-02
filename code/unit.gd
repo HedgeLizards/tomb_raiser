@@ -2,9 +2,13 @@ extends Sprite2D
 
 
 @export var tilemap: TileMapLayer
+@export var unit_name: String
+@export var max_health: int
+@export var max_action_points: int
 
 var mappos: Vector2i
-var walk_range = 5 # todo: base on unit type / action points
+@onready var action_points = max_action_points
+@onready var health = max_health
 
 
 func _ready() -> void:
@@ -42,7 +46,7 @@ func walkable_tiles() -> Dictionary:
 			continue
 		
 		visited[tile.pos] = tile
-		if tile.cost < walk_range:
+		if tile.cost < action_points:
 			for neighbour: Vector2i in tilemap.get_surrounding_cells(tile.pos):
 				#tile = tilemap.get
 				frontier.push_back(WalkTile.new(neighbour, tile.cost + 1))
@@ -53,7 +57,12 @@ func selectable() -> Selectable:
 	#todo: get these value from actual unit
 	var selectable: Selectable = Selectable.new()
 	selectable.title = "Skeleton"
-	selectable.stats = {"action_points": 10, "health": 3}
+	selectable.stats = {
+		"max_action_points": max_action_points,
+		"action_points": action_points,
+		"max_health": max_health,
+		"health": health
+	}
 	var attackAction: Selectable.Action = Selectable.Action.new()
 	attackAction.title = "Attack"
 	attackAction.enabled = false
