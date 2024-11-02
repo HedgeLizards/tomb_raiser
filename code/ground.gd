@@ -3,7 +3,7 @@ extends TileMapLayer
 
 var WATER: Tile = Tile.new(-1, "Water", "~~~~~")
 var GRASS: Tile = Tile.new(1, "Grass", "An empty field")
-var MOUNTAIN: Tile = Tile.new(2, "Grass", "A tall mountain")
+var MOUNTAIN: Tile = Tile.new(2, "Mountain", "A tall mountain")
 
 
 var tile_index = {
