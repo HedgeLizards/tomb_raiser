@@ -1,7 +1,7 @@
 extends Sprite2D
 
 
-signal select_pressed(unit: Unit)
+signal select_pressed(unit: Node2D)
 
 @export var tilemap: TileMapLayer
 
