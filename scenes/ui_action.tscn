@@ -1,42 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu4wn36lrk5at"]
+[gd_scene load_steps=5 format=3 uid="uid://bu4wn36lrk5at"]
 
 [ext_resource type="FontFile" uid="uid://cnscda1b375x8" path="res://fonts/KaushanScript-Regular.otf" id="1_i6qc0"]
 [ext_resource type="Script" path="res://code/ui_action.gd" id="1_ksftg"]
 [ext_resource type="FontFile" uid="uid://c5lt350go4m85" path="res://fonts/Quicksand-Bold.otf" id="2_v2tc8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j480g"]
+resource_local_to_scene = true
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 0.768627)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
 [node name="UIAction" type="PanelContainer"]
 mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j480g")
 script = ExtResource("1_ksftg")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_i6qc0")
 theme_override_font_sizes/font_size = 32
 
-[node name="Stats" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Stats" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Stats"]
+[node name="Label" type="Label" parent="VBoxContainer/Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_v2tc8")
 theme_override_font_sizes/font_size = 16
 
-[node name="DisabledReason" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="DisabledReason" type="Label" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 1)
 theme_override_fonts/font = ExtResource("2_v2tc8")
 theme_override_font_sizes/font_size = 16
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

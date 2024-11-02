@@ -3,13 +3,13 @@ extends CanvasLayer
 const UIAction = preload('res://scenes/ui_action.tscn')
 
 func _ready():
-	%Title/MarginContainer/HBoxContainer/Label.text = 'Necromancer'
-	%Stats/MarginContainer/HBoxContainer/Label.text = 'Action points: 5/10'
+	%Title/HBoxContainer/Label.text = 'Necromancer'
+	%Stats/HBoxContainer/Label.text = 'Action points: 5/10'
 	
 	add_action('Heal Undead', {
 		'action points': 2,
 		'range': 3,
-	}, null)
+	}, '')
 	add_action('Raise Undead', {
 		'action points': 3,
 		'range': 2,
@@ -29,7 +29,15 @@ func _on_quit_gui_input(event):
 		get_tree().quit()
 
 func _on_quit_mouse_entered():
-	$Quit/MarginContainer/HBoxContainer/Label.visible = true
+	$Quit.get_theme_stylebox('panel').bg_color = Color8(96, 96, 96)
+	$Quit/HBoxContainer/Label.visible = true
 
 func _on_quit_mouse_exited():
-	$Quit/MarginContainer/HBoxContainer/Label.visible = false
+	$Quit.get_theme_stylebox('panel').bg_color = Color.TRANSPARENT
+	$Quit/HBoxContainer/Label.visible = false
+
+func _on_turn_mouse_entered():
+	$Turn.get_theme_stylebox('panel').bg_color = Color8(96, 96, 96)
+
+func _on_turn_mouse_exited():
+	$Turn.get_theme_stylebox('panel').bg_color = Color8(64, 64, 64, 196)
