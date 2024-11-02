@@ -1,26 +1,14 @@
 extends TileMapLayer
 
 
-
-class Tile:
-	var walkable: bool
-	var walk_cost: int
-	var description: String
-	var title: String
-	
-	func selectable() -> Selectable:
-		var selectable: Selectable = Selectable.new()
-		selectable.title = title
-		selectable.description = description
-		selectable.stats = {
-			walkable: true,
-			walk_cost: walk_cost
-		}
-		return selectable
-
-
 	
 
 
-func get_tile(pos: Vector2i) -> Tile:
+func get_tile(pos: Vector2i) -> TileData:
+	#var source = tile_set.get_source(get_cell_source_id(pos))
+	##print("source ", source)
+	#var scene = source.get_scene_tile_scene(get_cell_alternative_tile(pos))
+	#print("scene ", scene)
+	#print(scene.walkable)
+	##print("cell  ", get_cell_alternative_tile(pos))
 	return null
