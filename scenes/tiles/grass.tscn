@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://code/tileinstance.gd" id="2_0slly"]
 
 [node name="Grass" type="Sprite2D"]
-scale = Vector2(0.08, 0.08)
+scale = Vector2(0.16, 0.16)
 texture = ExtResource("1_6mp2i")
 script = ExtResource("2_0slly")
 walkable = true

@@ -1,7 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyerdrm61isi0"]
+[gd_scene load_steps=11 format=3 uid="uid://cyerdrm61isi0"]
 
 [ext_resource type="Script" path="res://code/ui.gd" id="1_h1b74"]
 [ext_resource type="FontFile" uid="uid://c5lt350go4m85" path="res://fonts/Quicksand-Bold.otf" id="2_qxa3q"]
+[ext_resource type="FontFile" uid="uid://cnscda1b375x8" path="res://fonts/KaushanScript-Regular.otf" id="3_o4gh3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eycg"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3u1p"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.768627)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgo0a"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.768627)
+corner_radius_top_right = 8
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4hb3"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 0.768627)
+corner_radius_top_left = 8
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_yqujc"]
+offsets = PackedFloat32Array(0.00593472, 1)
+colors = PackedColorArray(0.25098, 0.25098, 0.25098, 0.768627, 0, 0, 0, 0.768627)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_280ux"]
+gradient = SubResource("Gradient_yqujc")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pbnxv"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = SubResource("GradientTexture2D_280ux")
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_h1b74")
@@ -9,35 +67,27 @@ script = ExtResource("1_h1b74")
 [node name="Quit" type="PanelContainer" parent="."]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 42.0
-offset_bottom = 47.0
 mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7eycg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Quit"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Quit/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Quit"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Icon" type="Label" parent="Quit/MarginContainer/HBoxContainer"]
+[node name="Icon" type="Label" parent="Quit/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qxa3q")
 theme_override_font_sizes/font_size = 24
 text = "🏠"
 
-[node name="Label" type="Label" parent="Quit/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Quit/HBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qxa3q")
 theme_override_font_sizes/font_size = 24
 text = "Quit"
 
-[node name="Turn" type="Button" parent="."]
+[node name="Turn" type="PanelContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -45,12 +95,15 @@ offset_top = 16.0
 offset_right = -16.0
 grow_horizontal = 0
 mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f3u1p")
+
+[node name="Label" type="Label" parent="Turn"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qxa3q")
 theme_override_font_sizes/font_size = 24
 text = "End turn"
 
 [node name="Selection" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -72,18 +125,12 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 40.0
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fgo0a")
 
-[node name="MarginContainer" type="MarginContainer" parent="Selection/Control/Title"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Selection/Control/Title/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Selection/Control/Title"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Selection/Control/Title/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Selection/Control/Title/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qxa3q")
 
@@ -99,21 +146,14 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_e4hb3")
 
-[node name="MarginContainer" type="MarginContainer" parent="Selection/Control/Stats"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Selection/Control/Stats/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Selection/Control/Stats"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Selection/Control/Stats/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Selection/Control/Stats/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qxa3q")
-text = "Action points: 5/10"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Selection"]
 layout_mode = 2
@@ -123,25 +163,20 @@ vertical_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_pbnxv")
 
-[node name="MarginContainer" type="MarginContainer" parent="Selection/ScrollContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="Actions" type="HBoxContainer" parent="Selection/ScrollContainer/PanelContainer/MarginContainer"]
+[node name="Actions" type="HBoxContainer" parent="Selection/ScrollContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 
-[node name="Description" type="Label" parent="Selection/ScrollContainer/PanelContainer/MarginContainer"]
+[node name="Description" type="Label" parent="Selection/ScrollContainer/PanelContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 135)
+visible = false
+custom_minimum_size = Vector2(0, 91)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qxa3q")
+theme_override_fonts/font = ExtResource("3_o4gh3")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -150,3 +185,5 @@ autowrap_mode = 3
 [connection signal="gui_input" from="Quit" to="." method="_on_quit_gui_input"]
 [connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_exited" from="Quit" to="." method="_on_quit_mouse_exited"]
+[connection signal="mouse_entered" from="Turn" to="." method="_on_turn_mouse_entered"]
+[connection signal="mouse_exited" from="Turn" to="." method="_on_turn_mouse_exited"]
