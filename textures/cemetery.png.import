@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dulxf80dhp26y"
-valid=false
+uid="uid://cphw5qdevkecm"
+path="res://.godot/imported/cemetery.png-ca361c4850396c298c41f3212147152c.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://textures/unit_shadow.png"
+source_file="res://textures/cemetery.png"
+dest_files=["res://.godot/imported/cemetery.png-ca361c4850396c298c41f3212147152c.ctex"]
 
 [params]
 

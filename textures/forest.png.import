@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dulxf80dhp26y"
-valid=false
+uid="uid://bf2402ido48q0"
+path="res://.godot/imported/forest.png-87771f4e11f62a4764d3fc276ae6b674.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://textures/unit_shadow.png"
+source_file="res://textures/forest.png"
+dest_files=["res://.godot/imported/forest.png-87771f4e11f62a4764d3fc276ae6b674.ctex"]
 
 [params]
 
