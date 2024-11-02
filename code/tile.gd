@@ -23,8 +23,8 @@ func selectable() -> Selectable:
 	selectable.title = title
 	selectable.description = description
 	selectable.stats = {
-		walkable: true,
-		walk_cost: walk_cost
+		"walkable": walkable,
+		"walk_cost": walk_cost
 	}
 	return selectable
 
