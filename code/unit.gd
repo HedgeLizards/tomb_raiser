@@ -47,6 +47,7 @@ func walkable_tiles() -> Dictionary:
 		visited[tile.pos] = tile
 		if tile.cost < walk_range:
 			for neighbour: Vector2i in tilemap.get_surrounding_cells(tile.pos):
+				#tile = tilemap.get
 				frontier.push_back(WalkTile.new(neighbour, tile.cost + 1))
 	var end = Time.get_ticks_msec()
 	print("time: ", end - start)

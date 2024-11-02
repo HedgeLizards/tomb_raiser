@@ -22,6 +22,7 @@ func select(unit: Node) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2
 	if event is InputEventMouseMotion:
+		#print("mouse motion ", event.)
 		click_start = NOT_CLICKING
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
