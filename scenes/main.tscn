@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=12 format=4 uid="uid://ba6qjddxcbjdt"]
 
 [ext_resource type="Script" path="res://code/MapCamera2D.gd" id="1_7m1iq"]
 [ext_resource type="PackedScene" uid="uid://dkuc368kt8yd4" path="res://scenes/tiles/grass.tscn" id="1_hl2yr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8our1tju6by1" path="res://scenes/tiles/sea.tscn" id="2_06ss3"]
 [ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selected.tscn" id="3_jehwe"]
 [ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/unit.tscn" id="3_t8oo7"]
+[ext_resource type="Script" path="res://code/units.gd" id="4_dld28"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_o1kb8"]
 resource_name = "ground"
@@ -39,10 +40,15 @@ tile_map_data = PackedByteArray("AAAHAAMAAAAAAAAAAQAGAAMAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_dyrtn")
 
 [node name="Units" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_dld28")
 
 [node name="Necromancer" parent="Units" node_paths=PackedStringArray("tilemap") instance=ExtResource("3_t8oo7")]
 position = Vector2(406, 259)
 tilemap = NodePath("../../Ground")
+
+[node name="Unit" parent="Units" instance=ExtResource("3_t8oo7")]
+position = Vector2(-17, 150)
 
 [node name="Cursor" type="Node" parent="."]
 script = ExtResource("1_n1hes")
@@ -51,5 +57,3 @@ script = ExtResource("1_n1hes")
 position_smoothing_enabled = true
 script = ExtResource("1_7m1iq")
 pan_margin = 0.0
-
-[connection signal="select_pressed" from="Units/Necromancer" to="Cursor" method="_on_unit_select_pressed"]

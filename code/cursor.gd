@@ -17,6 +17,17 @@ func select(unit: Node) -> void:
 		%Selections.set_cell(neighbour, 0, Vector2i.ZERO, 1)
 	print(neighbours)
 
-
-func _on_unit_select_pressed(unit: Node) -> void:
-	select(unit)
+func _unhandled_input(event: InputEvent) -> void:
+	var click_pos: Vector2
+	if event is InputEventMouseButton and event.pressed:
+		click_pos = event.global_position
+	elif event is InputEventScreenTouch:
+		click_pos = event.position
+	else:
+		return
+	print("mouse ", get_viewport().get_mouse_position())
+	var clicked_tile: Vector2i = %Ground.local_to_map(%Ground.make_canvas_position_local(click_pos))
+	var unit: Node2D = %Units.unit_at(clicked_tile)
+	print("Input!!! " + str(click_pos) + " " + str(clicked_tile) + " " + str(unit))
+	if unit != null:
+		select(unit)
