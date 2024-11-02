@@ -62,17 +62,21 @@ func _unhandled_input(event: InputEvent) -> void:
 	tile_clicked(clicked_tile)
 
 func tile_clicked(pos: Vector2i) -> void:
-	if selected_unit and selected_unit.can_walk_to(pos):
-		selected_unit.walk_to(pos)
-		if selected_unit.can_do_action():
-			select_unit(selected_unit)
-		else:
+	if selected_unit:
+		if pos == selected_unit.mappos:
 			clear_select()
-		return
+			return
+		if selected_unit.can_walk_to(pos):
+			selected_unit.walk_to(pos)
+			if selected_unit.can_do_action():
+				select_unit(selected_unit)
+			else:
+				clear_select()
+			return
 	var unit: Node2D = %Units.unit_at(pos)
 	if unit != null:
 		select_unit(unit)
 		return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:
-		pass
+		select_tile(tile)

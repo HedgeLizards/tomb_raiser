@@ -3,5 +3,4 @@
 [ext_resource type="Texture2D" uid="uid://bsi1ut64bmouy" path="res://textures/selected.png" id="1_2fcnv"]
 
 [node name="Selected" type="Sprite2D"]
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("1_2fcnv")
