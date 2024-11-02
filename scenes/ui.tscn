@@ -104,6 +104,7 @@ theme_override_font_sizes/font_size = 24
 text = "End turn"
 
 [node name="Selection" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -165,15 +166,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_pbnxv")
 
-[node name="Actions" type="HBoxContainer" parent="Selection/ScrollContainer/PanelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 16
-
 [node name="Description" type="Label" parent="Selection/ScrollContainer/PanelContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 91)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_o4gh3")
@@ -181,6 +175,12 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="Selection/ScrollContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
 
 [connection signal="gui_input" from="Quit" to="." method="_on_quit_gui_input"]
 [connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]

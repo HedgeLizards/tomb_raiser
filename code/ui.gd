@@ -2,27 +2,35 @@ extends CanvasLayer
 
 const UIAction = preload('res://scenes/ui_action.tscn')
 
-func _ready():
-	%Title/HBoxContainer/Label.text = 'Necromancer'
-	%Stats/HBoxContainer/Label.text = 'Action points: 5/10'
+func _on_cursor_selection_changed(selected):
+	if selected == null:
+		$Selection.visible = false
+		
+		return
 	
-	add_action('Heal Undead', {
-		'action points': 2,
-		'range': 3,
-	}, '')
-	add_action('Raise Undead', {
-		'action points': 3,
-		'range': 2,
-	}, 'no bones in range')
+	%Title/HBoxContainer/Label.text = selected.title # selected.stats.health
+	%Stats/HBoxContainer/Label.text = 'Action points: %d' % selected.stats.action_points
+	
+	if selected.actions.is_empty():
+		%Description.text = selected.description
+		%Description.visible = true
+		%Actions.visible = false
+	else:
+		%Description.visible = false
+		
+		for action in %Actions.get_children():
+			action.queue_free()
+		
+		for action in selected.actions:
+			var ui_action = UIAction.instantiate()
+			
+			ui_action.setUp(action)
+			
+			%Actions.add_child(ui_action)
+		
+		%Actions.visible = true
 	
 	$Selection.visible = true
-
-func add_action(title, stats, disabled_reason):
-	var ui_action = UIAction.instantiate()
-	
-	ui_action.setUp(title, stats, disabled_reason)
-	
-	%Actions.add_child(ui_action)
 
 func _on_quit_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
