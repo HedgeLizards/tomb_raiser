@@ -15,11 +15,8 @@ func toggle_audio():
 		$Audio.texture = preload('res://textures/UI/UI_SoundOff_250px_trimmed.png')
 
 func _input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_ESCAPE:
-			get_tree().quit()
-		elif event.keycode == KEY_M:
-			toggle_audio()
+	if event is InputEventKey and event.keycode == KEY_M and event.pressed and not event.echo:
+		toggle_audio()
 
 func _on_play_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

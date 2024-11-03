@@ -24,7 +24,7 @@ func _on_cursor_selection_changed(selected):
 		%Stats/HBoxContainer/ActionPoints.visible = false
 	
 	if selected.stats.has('walk_cost'):
-		%Stats/HBoxContainer/ActionCost/Label.text = 'Action cost: %s' % (selected.stats.walk_cost if selected.stats.walkable else '∞')
+		%Stats/HBoxContainer/ActionCost/Label.text = 'Traversal cost: %s' % (selected.stats.walk_cost if selected.stats.walkable else '∞')
 		%Stats/HBoxContainer/ActionCost.visible = true
 	else:
 		%Stats/HBoxContainer/ActionCost.visible = false
@@ -68,13 +68,6 @@ func _on_cursor_selection_changed(selected):
 		%Actions.visible = true
 	
 	$Selection.visible = true
-
-func _input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_ESCAPE:
-			get_tree().change_scene_to_packed(load('res://scenes/menu.tscn'))
-		elif event.keycode == KEY_M:
-			AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
 
 func _on_quit_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
