@@ -2,7 +2,7 @@ class_name ActionType
 extends RefCounted
 
 
-func can_perform(tile: Tile) -> bool:
+func can_perform(tile: Tile, unit: Node) -> bool:
 	return false
 
 func cost() -> int:
@@ -12,7 +12,7 @@ func title() -> String:
 	return "Unknown action"
 
 class Raise extends ActionType:
-	func can_perform(tile: Tile) -> bool:
+	func can_perform(tile: Tile, unit: Node) -> bool:
 		return tile.raised != null
 	func range() -> int:
 		return 1
@@ -23,8 +23,8 @@ class Raise extends ActionType:
 	func no_targets_nearby_reason() -> String:
 		return "no bones in range"
 class Attack extends ActionType:
-	func can_perform(tile: Tile) -> bool:
-		return false
+	func can_perform(tile: Tile, unit: Node) -> bool:
+		return unit != null and unit.faction == unit.Faction.Human
 	func cost() -> int:
 		return 1
 	func range() -> int:
@@ -34,7 +34,7 @@ class Attack extends ActionType:
 	func no_targets_nearby_reason() -> String:
 		return "no humans in range"
 class Heal extends ActionType:
-	func can_perform(tile: Tile) -> bool:
+	func can_perform(tile: Tile, unit: Node) -> bool:
 		return false
 	func cost() -> int:
 		return 2

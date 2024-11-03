@@ -10,6 +10,7 @@ var units: Node2D
 @export var max_action_points: int
 enum Faction {Undead, Human}
 @export var faction: Faction
+@export var strength: int = 1
 
 var mappos: Vector2i
 @onready var action_points = max_action_points
@@ -78,13 +79,19 @@ func targets(action: ActionType) -> Array[Vector2i]:
 func can_act(action: ActionType, pos: Vector2i) -> bool:
 	if not (action in actions):
 		return false
-	return action.can_perform(tilemap.get_tile(pos))
+	return action.can_perform(tilemap.get_tile(pos), units.unit_at(pos))
 
 func act(action: ActionType, pos: Vector2i):
 	action_points -= action.cost()
 	if is_instance_of(action, ActionType.Raise):
 		var to_raise: PackedScene = tilemap.get_tile(pos).raised
 		get_parent().add_unit(pos, to_raise)
+	if is_instance_of(action, ActionType.Attack):
+		var enemy = units.unit_at(pos)
+		enemy.health -= strength * (action.cost() + action_points)
+		action_points = 0
+		if enemy.health <= 0:
+			enemy.queue_free()
 
 func selectable() -> Selectable:
 	#todo: get these value from actual unit
