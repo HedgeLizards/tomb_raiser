@@ -14,24 +14,36 @@ func title() -> String:
 class Raise extends ActionType:
 	func can_perform(tile: Tile) -> bool:
 		return tile.raised != null
+	func range() -> int:
+		return 1
 	func cost() -> int:
-		return 2
+		return 3
 	func title() -> String:
-		return "Raise"
+		return "Raise Undead"
+	func no_targets_nearby_reason() -> String:
+		return "no bones in range"
 class Attack extends ActionType:
 	func can_perform(tile: Tile) -> bool:
 		return false
 	func cost() -> int:
 		return 1
+	func range() -> int:
+		return 1
 	func title() -> String:
 		return "Attack"
+	func no_targets_nearby_reason() -> String:
+		return "no humans in range"
 class Heal extends ActionType:
 	func can_perform(tile: Tile) -> bool:
 		return false
 	func cost() -> int:
 		return 2
+	func range() -> int:
+		return 2
 	func title() -> String:
-		return "Heal"
+		return "Heal Undead"
+	func no_targets_nearby_reason() -> String:
+		return "no undead in range"
 
 enum RawActionType {Raise, Attack, Heal}
 
