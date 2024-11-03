@@ -107,7 +107,7 @@ func selectable() -> Selectable:
 		var sa: Selectable.Action = Selectable.Action.new()
 		var cost = action.cost()
 		sa.type = action
-		sa.stats = {"action_cost": cost}
+		sa.stats = {"action_cost": cost, "range": action.range()}
 		sa.enabled = true
 		sa.title = action.title()
 		if faction != Faction.Undead:
@@ -115,10 +115,10 @@ func selectable() -> Selectable:
 			sa.disabled_reason = "Not under your control"
 		if cost > action_points:
 			sa.enabled = false
-			sa.disabled_reason = "Not enough action points"
+			sa.disabled_reason = "not enough action points"
 		elif targets(action).size() == 0:
 			sa.enabled = false
-			sa.disabled_reason = "No available target nearby"
+			sa.disabled_reason = action.no_targets_nearby_reason()
 		selectable.actions.push_back(sa)
 			
 	#var attackAction: Selectable.Action = Selectable.Action.new()
