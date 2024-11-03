@@ -55,6 +55,7 @@ window/dpi/allow_hidpi=false
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.0705882, 0.803922, 0.85098, 1)
