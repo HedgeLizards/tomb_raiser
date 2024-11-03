@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0qvqvdcey38s"]
+
+[ext_resource type="Script" path="res://code/effect.gd" id="1_d6q7i"]
+[ext_resource type="FontFile" uid="uid://c5lt350go4m85" path="res://fonts/Quicksand-Bold.otf" id="1_ou3f2"]
+[ext_resource type="Texture2D" uid="uid://dclepu8675isk" path="res://textures/UI/UI_Sword_250px_trimmed.png" id="2_h3bd8"]
+
+[node name="AttackEffect" type="Node2D"]
+script = ExtResource("1_d6q7i")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-51, -81)
+scale = Vector2(5, 5)
+
+[node name="Hbox" type="HBoxContainer" parent="Node2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Node2D/Hbox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.839216, 0, 0.262745, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ou3f2")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Hbox"]
+layout_mode = 2
+texture = ExtResource("2_h3bd8")
+expand_mode = 3

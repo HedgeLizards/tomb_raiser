@@ -10,6 +10,7 @@ var units: Node2D
 @export var max_action_points: int
 enum Faction {Undead, Human}
 @export var faction: Faction
+var AttackEffect = preload("res://scenes/effects/attack_effect.tscn")
 
 var mappos: Vector2i
 @onready var action_points = max_action_points
@@ -96,8 +97,12 @@ func act(action: ActionType, pos: Vector2i):
 		get_parent().add_unit(pos, to_raise)
 	if is_instance_of(action, ActionType.Attack):
 		var enemy = units.unit_at(pos)
-		enemy.health -= action.damage * (action.cost() + action_points)
+		var damage: int = min(action.damage * (action.cost() + action_points), enemy.health)
+		enemy.health -= damage
 		action_points = 0
+		var effect = AttackEffect.instantiate()
+		effect.set_text(str(damage))
+		get_parent().show_effect(pos, effect)
 		if enemy.health <= 0:
 			enemy.queue_free()
 
