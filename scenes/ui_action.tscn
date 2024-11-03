@@ -45,9 +45,11 @@ theme_override_font_sizes/font_size = 32
 [node name="Stats" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 12
 
 [node name="ActionCost" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
+tooltip_text = "Action points"
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/ActionCost"]
 layout_mode = 2
@@ -60,6 +62,8 @@ expand_mode = 3
 
 [node name="Damage" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
+tooltip_text = "Attack damage
+"
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/Damage"]
 layout_mode = 2
@@ -72,6 +76,8 @@ expand_mode = 3
 
 [node name="Healing" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
+tooltip_text = "Healing
+"
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/Healing"]
 layout_mode = 2
@@ -84,6 +90,7 @@ expand_mode = 3
 
 [node name="Range" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
+tooltip_text = "Range"
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/Range"]
 layout_mode = 2

@@ -1,7 +1,7 @@
 extends Node2D
 
-
-@export var raw_actions: Array[ActionType.RawActionType]
+enum RawActionType {Raise, AttackWeak, Heal}
+@export var raw_actions: Array[RawActionType]
 
 var tilemap: TileMapLayer
 var units: Node2D
@@ -10,14 +10,23 @@ var units: Node2D
 @export var max_action_points: int
 enum Faction {Undead, Human}
 @export var faction: Faction
-@export var strength: int = 1
+var AttackEffect = preload("res://scenes/effects/attack_effect.tscn")
 
 var mappos: Vector2i
 @onready var action_points = max_action_points
 @onready var health = max_health
-@onready var actions = raw_actions.map(ActionType.from_raw)
+@onready var actions = raw_actions.map(parse_action)
 
 
+static func parse_action(action: RawActionType) -> ActionType:
+	if action == RawActionType.Raise:
+		return ActionType.Raise.new()
+	elif action == RawActionType.Heal:
+		return ActionType.Heal.new()
+	elif action == RawActionType.AttackWeak:
+		return ActionType.Attack.new(1)
+	else:
+		return null
 
 func _ready() -> void:
 	mappos = tilemap.local_to_map(position)
@@ -88,8 +97,12 @@ func act(action: ActionType, pos: Vector2i):
 		get_parent().add_unit(pos, to_raise)
 	if is_instance_of(action, ActionType.Attack):
 		var enemy = units.unit_at(pos)
-		enemy.health -= strength * (action.cost() + action_points)
+		var damage: int = min(action.damage * (action.cost() + action_points), enemy.health)
+		enemy.health -= damage
 		action_points = 0
+		var effect = AttackEffect.instantiate()
+		effect.set_text(str(damage))
+		get_parent().show_effect(pos, effect)
 		if enemy.health <= 0:
 			enemy.queue_free()
 
@@ -118,6 +131,8 @@ func selectable() -> Selectable:
 		sa.stats = {"action_cost": cost, "range": action.range()}
 		if healing > 0:
 			sa.stats.healing = healing
+		if action.damage > 0:
+			sa.stats.damage = action.damage
 		sa.enabled = true
 		sa.title = action.title()
 		if faction != Faction.Undead:

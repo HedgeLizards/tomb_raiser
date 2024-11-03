@@ -109,7 +109,7 @@ _data = {
 "Wiggle": SubResource("Animation_iei02")
 }
 
-[node name="Skeleton" type="Node2D"]
+[node name="SkeletonSimple" type="Node2D"]
 z_index = 1
 z_as_relative = false
 scale = Vector2(0.5, 0.5)
@@ -147,6 +147,7 @@ texture = ExtResource("2_y48cn")
 offset = Vector2(-20, -30)
 
 [node name="UnitSkeletonsArm" type="Sprite2D" parent="SkeletonPuppet/UnitSkeletons"]
+texture_filter = 4
 position = Vector2(-154, -26)
 rotation = -0.339292
 texture = ExtResource("5_fvwi7")

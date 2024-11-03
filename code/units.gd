@@ -21,3 +21,7 @@ func add_unit(pos: Vector2i, to_raise: PackedScene) -> void:
 	unit.tilemap = %Ground
 	unit.units = self
 	add_child(unit)
+
+func show_effect(pos: Vector2i, effect: Node2D) -> void:
+	effect.position = %Ground.map_to_local(pos)
+	%Effects.add_child(effect)

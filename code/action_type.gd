@@ -1,6 +1,7 @@
 class_name ActionType
 extends RefCounted
 
+var damage = -1
 
 func can_perform(tile: Tile, unit: Node) -> bool:
 	return false
@@ -25,6 +26,8 @@ class Raise extends ActionType:
 	func no_targets_nearby_reason() -> String:
 		return "no bones in range"
 class Attack extends ActionType:
+	func _init(damage) -> void:
+		self.damage = damage
 	func can_perform(tile: Tile, unit: Node) -> bool:
 		return unit != null and unit.faction == unit.Faction.Human
 	func cost() -> int:
@@ -50,18 +53,6 @@ class Heal extends ActionType:
 		return "Heal Undead"
 	func no_targets_nearby_reason() -> String:
 		return "no undead in range"
-
-enum RawActionType {Raise, Attack, Heal}
-
-static func from_raw(action: RawActionType) -> ActionType:
-	if action == RawActionType.Raise:
-		return Raise.new()
-	elif action == RawActionType.Heal:
-		return Heal.new()
-	elif action == RawActionType.Attack:
-		return Attack.new()
-	else:
-		return null
 	
 	
 	#if action == ActionType.Raise:
