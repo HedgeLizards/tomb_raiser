@@ -14,7 +14,6 @@ func _on_cursor_selection_changed(selected):
 		$Selection.visible = false
 		
 		return
-	
 	%Title/Label.text = selected.title
 	
 	if selected.stats.has('max_action_points'):
