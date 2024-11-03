@@ -26,10 +26,11 @@ func select_unit(unit: Node) -> void:
 	clear_select()
 	selected_unit = unit
 	print("selected ", unit.mappos, " ", unit)
-	var walkable: Array[Vector2i]
-	walkable.assign(unit.walkable_tiles().keys()) #%Ground.get_surrounding_cells(unit.mappos)
-	for neighbour in walkable:
-		%Selections.set_cell(neighbour, 0, Vector2i.ZERO, 1)
+	if unit.faction == unit.Faction.Undead:
+		var walkable: Array[Vector2i]
+		walkable.assign(unit.walkable_tiles().keys()) #%Ground.get_surrounding_cells(unit.mappos)
+		for neighbour in walkable:
+			%Selections.set_cell(neighbour, 0, Vector2i.ZERO, 1)
 	#print(walkable)
 	selection_changed.emit(unit.selectable())
 
@@ -69,10 +70,7 @@ func tile_clicked(pos: Vector2i) -> void:
 	if selected_unit != null and selected_unit == unit:
 		select_none()
 		return
-	if unit != null:
-		select_unit(unit)
-		return
-	if selected_unit:
+	if selected_unit and selected_unit.faction == selected_unit.Faction.Undead:
 		if selected_unit_action != null:
 			if selected_unit.can_act(selected_unit_action, pos):
 				selected_unit.act(selected_unit_action, pos)
@@ -88,6 +86,9 @@ func tile_clicked(pos: Vector2i) -> void:
 			else:
 				select_none()
 			return
+	if unit != null:
+		select_unit(unit)
+		return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:
 		if selected_tile == tile:

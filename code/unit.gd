@@ -3,10 +3,13 @@ extends Node2D
 
 @export var raw_actions: Array[ActionType.RawActionType]
 
-@export var tilemap: TileMapLayer
+var tilemap: TileMapLayer
+var units: Node2D
 @export var title: String
 @export var max_health: int
 @export var max_action_points: int
+enum Faction {Undead, Human}
+@export var faction: Faction
 
 var mappos: Vector2i
 @onready var action_points = max_action_points
@@ -61,7 +64,9 @@ func walkable_tiles() -> Dictionary:
 				if cost <= action_points:
 					frontier.push_back(WalkTile.new(neighbour, cost))
 	var end = Time.get_ticks_msec()
-	visited.erase(mappos)
+	#visited.erase(mappos)
+	for unit in units.get_children():
+		visited.erase(unit.mappos)
 	return visited
 
 func targets(action: ActionType) -> Array[Vector2i]:
@@ -79,12 +84,7 @@ func act(action: ActionType, pos: Vector2i):
 	action_points -= action.cost()
 	if is_instance_of(action, ActionType.Raise):
 		var to_raise: PackedScene = tilemap.get_tile(pos).raised
-		var unit: Node = to_raise.instantiate()
-		unit.mappos = pos
-		unit.position = tilemap.map_to_local(pos)
-		unit.tilemap = tilemap
-		get_parent().add_child(unit)
-		print("raised the dead")
+		get_parent().add_unit(pos, to_raise)
 
 func selectable() -> Selectable:
 	#todo: get these value from actual unit
@@ -96,6 +96,12 @@ func selectable() -> Selectable:
 		"max_health": max_health,
 		"health": health
 	}
+	if faction == Faction.Undead:
+		selectable.stats["faction"] = "Undead"
+	elif faction == Faction.Human:
+		selectable.stats["Faction"] = "Human"
+	else:
+		selectable.stats["Faction"] = "Unknown"
 	selectable.actions = []
 	for action in actions:
 		var sa: Selectable.Action = Selectable.Action.new()
@@ -104,6 +110,9 @@ func selectable() -> Selectable:
 		sa.stats = {"action_cost": cost}
 		sa.enabled = true
 		sa.title = action.title()
+		if faction != Faction.Undead:
+			sa.enabled = false
+			sa.disabled_reason = "Not under your control"
 		if cost > action_points:
 			sa.enabled = false
 			sa.disabled_reason = "Not enough action points"

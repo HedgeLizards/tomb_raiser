@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc8aaoejhsv01"]
+
+[ext_resource type="Script" path="res://code/unit.gd" id="1_smreo"]
+[ext_resource type="Texture2D" uid="uid://cyp6bwj652nky" path="res://textures/unit_humans.png" id="2_xovq2"]
+
+[node name="Villagers" type="Node2D"]
+script = ExtResource("1_smreo")
+title = "Villagers"
+max_health = 2
+max_action_points = 2
+faction = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xovq2")
