@@ -110,8 +110,6 @@ one_shot = true
 
 [node name="Music" parent="." instance=ExtResource("10_ku836")]
 
-[connection signal="selection_changed" from="Cursor" to="UI" method="_on_cursor_selection_changed"]
-[connection signal="selection_changed" from="Cursor" to="Music" method="_on_cursor_selection_changed"]
 [connection signal="turn_changed" from="Turn" to="UI" method="_on_turn_turn_changed"]
 [connection signal="action_selected" from="UI" to="Cursor" method="_on_ui_action_selected"]
 [connection signal="end_turn_pressed" from="UI" to="Turn" method="_on_ui_end_turn_pressed"]

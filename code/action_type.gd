@@ -24,9 +24,6 @@ func does_attack() -> bool:
 func range() -> int:
 	return 1
 
-func healing() -> int: 
-	return 0
-
 class Raise extends ActionType:
 	func can_perform(actor: Node, tile: Tile, unit: Node) -> bool:
 		return tile.raised != null
