@@ -8,7 +8,6 @@ signal action_selected(action: ActionType)
 func setUp(action: Selectable.Action):
 	$VBoxContainer/Title.text = action.title
 	action_type = action.type
-	print("action type ", action.type)
 	for stat in ['action_cost', 'healing', 'damage', 'range']:
 		var node = $VBoxContainer/Stats.get_node(stat.to_pascal_case())
 		

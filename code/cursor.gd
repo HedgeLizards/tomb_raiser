@@ -44,7 +44,7 @@ func select_unit_action(action: ActionType) -> void:
 	self.selected_unit_action = action
 	%Selections.clear()
 	for pos in selected_unit.targets(action):
-		%Selections.set_cell(pos, 0, Vector2i.ZERO, 1)
+		%Selections.set_cell(pos, 0, Vector2i.ZERO, 4)
 
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2

@@ -104,7 +104,6 @@ func selectable() -> Selectable:
 		sa.stats = {"action_cost": cost}
 		sa.enabled = true
 		sa.title = action.title()
-		print(sa.title, " ", targets(action))
 		if cost > action_points:
 			sa.enabled = false
 			sa.disabled_reason = "Not enough action points"
