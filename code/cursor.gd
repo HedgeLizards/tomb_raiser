@@ -93,7 +93,7 @@ func tile_clicked(pos: Vector2i) -> void:
 		return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:
-		if selected_tile == tile:
+		if %Selections.get_cell_alternative_tile(pos) == 0:
 			select_none()
 		else:
 			select_tile(tile, pos)
