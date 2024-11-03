@@ -17,15 +17,13 @@ jobs:
     - name: checkout
       uses: actions/checkout@v4.1.4
 
-    - name: set default host
-      run: echo 's.troido.nl' > client/default_host.txt
 
     - name: calculate version
-      run: echo "v0.1.${{ github.run_number }}" > client/version.txt
+      run: echo "v0.1.${{ github.run_number }}" > version.txt
 
     - name: get tag from version
       id: tag_version
-      run: echo "TAG_VERSION=$(cat client/version.txt)" >> $GITHUB_OUTPUT
+      run: echo "TAG_VERSION=$(cat version.txt)" >> $GITHUB_OUTPUT
 
     - name: export game
       id: export
@@ -35,7 +33,7 @@ jobs:
         godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
         godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
         cache: true
-        relative_project_path: ./client/
+        relative_project_path: ./
         archive_output: true
 
     - name: set index
