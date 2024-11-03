@@ -5,6 +5,7 @@ signal action_selected(action)
 const COLOR_DISABLED = Color8(128, 128, 128)
 
 var action_type
+var selected = false
 
 func setUp(action: Selectable.Action):
 	$VBoxContainer/Title.text = action.title
@@ -33,7 +34,16 @@ func setUp(action: Selectable.Action):
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		action_selected.emit(action_type)
+		selected = not selected
+		
+		action_selected.emit(action_type if selected else null)
+		
+		var panel_stylebox = get_theme_stylebox('panel')
+		
+		panel_stylebox.border_width_left = 4 if selected else 1
+		panel_stylebox.border_width_top = 4 if selected else 1
+		panel_stylebox.border_width_right = 4 if selected else 1
+		panel_stylebox.border_width_bottom = 4 if selected else 1
 
 func _on_mouse_entered():
 	get_theme_stylebox('panel').bg_color = Color8(96, 96, 96)
