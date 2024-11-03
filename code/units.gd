@@ -42,7 +42,7 @@ func enemy_unit_turn(unit: Node) -> void:
 			var actions = unit.actions.filter(func (action): return action.does_attack())
 			for action in actions:
 				print("enemy action", action, " ", unit, " ", opponent, " ", opponent.pos, " ", unit.can_act(action, opponent.pos))
-				if unit.can_act(action, opponent.pos):
+				if opponent.pos in unit.tilemap.get_surrounding_cells(unit.mappos):
 					unit.act(action, opponent.pos)
 					return
 			var target: WalkStep = path.pop_front()

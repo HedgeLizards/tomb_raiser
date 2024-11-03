@@ -102,7 +102,7 @@ func targets(action: ActionType) -> Array[Vector2i]:
 	return in_range.filter(func(pos): return can_act(action, pos))
 
 func can_act(action: ActionType, pos: Vector2i) -> bool:
-	if not (action in actions and pos in tilemap.get_surrounding_cells(mappos)):
+	if not (action in actions):
 		return false
 	return action.can_perform(self, tilemap.get_tile(pos), units.unit_at(pos))
 
