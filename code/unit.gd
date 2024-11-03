@@ -40,8 +40,15 @@ func walk_to(last_step: WalkStep) -> void:
 	action_points -= last_step.cost
 	mappos = last_step.pos
 	var tween = create_tween()
+	var previous_position: Vector2
 	for step in last_step.path():
-		tween.tween_property(self, "position", tilemap.map_to_local(step.pos), 0.3)
+		var next_position: Vector2 = tilemap.map_to_local(step.pos)
+		if step.previous == null:
+			previous_position = next_position
+			continue
+		tween.tween_callback(func(): scale.x = abs(scale.x) * sign(previous_position.x - next_position.x))
+		tween.tween_property(self, "position", next_position, 0.3)
+		previous_position = next_position
 
 func can_do_action() -> bool:
 	return action_points > 0

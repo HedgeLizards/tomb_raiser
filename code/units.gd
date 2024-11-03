@@ -41,7 +41,6 @@ func enemy_unit_turn(unit: Node) -> void:
 		while unit.action_points > 0:
 			var actions = unit.actions.filter(func (action): return action.does_attack())
 			for action in actions:
-				print("enemy action", action, " ", unit, " ", opponent, " ", opponent.pos, " ", unit.can_act(action, opponent.pos))
 				if unit.can_act(action, opponent.pos):
 					unit.act(action, opponent.pos)
 					return

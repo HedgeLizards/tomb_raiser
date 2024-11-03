@@ -44,6 +44,10 @@ func select_tile(tile: Tile, pos: Vector2i) -> void:
 func select_unit_action(action: ActionType) -> void:
 	selected_unit_action = action
 	%Selections.clear()
+	if action == null:
+		for neighbour in selected_unit_walkable_tiles.keys():
+			%Selections.set_cell(neighbour, 0, Vector2i.ZERO, 1)
+		return
 	var selections_scene_index = action.selections_scene_index()
 	for pos in selected_unit.targets(action):
 		%Selections.set_cell(pos, 0, Vector2i.ZERO, selections_scene_index)
