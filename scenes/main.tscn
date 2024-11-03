@@ -23,8 +23,8 @@ texture = ExtResource("4_48aqy")
 texture_region_size = Vector2i(800, 400)
 1:0/0 = 0
 2:0/0 = 0
-2:0/0/y_sort_origin = 2
 2:1/0 = 0
+2:1/0/z_index = 1
 2:1/0/y_sort_origin = 1
 1:1/0 = 0
 0:0/0 = 0
@@ -90,7 +90,7 @@ position = Vector2(-1321, 190)
 
 [node name="Necromancer" parent="Units" instance=ExtResource("6_mgcqv")]
 position = Vector2(-399, 1197)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.2, 0.2)
 
 [node name="Villagers" parent="Units" instance=ExtResource("12_2eah3")]
 position = Vector2(-91, -589)
