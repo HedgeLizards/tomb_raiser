@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://bq2erp06qxacg"
+uid="uid://os328lt06xoa"
 path="res://.godot/imported/MUS_Organ_155BPM.ogg-53e02cf27f8e4f94e566e325baea1991.oggvorbisstr"
 
 [deps]
@@ -16,4 +16,4 @@ loop=true
 loop_offset=0.0
 bpm=155.0
 beat_count=0
-bar_beats=4
+bar_beats=3

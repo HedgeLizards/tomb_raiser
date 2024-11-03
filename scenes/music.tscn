@@ -1,19 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfr5m2k6trtw7"]
+[gd_scene load_steps=10 format=3 uid="uid://dfr5m2k6trtw7"]
 
 [ext_resource type="Script" path="res://code/music.gd" id="1_85fvm"]
-[ext_resource type="AudioStream" uid="uid://c0qib2o8tn25o" path="res://audio/music/MUS_Main_155BPM.ogg" id="2_mgvhq"]
-[ext_resource type="AudioStream" uid="uid://br6yuwbo3n55r" path="res://audio/music/MUS_StringEnsemble_155BPM.ogg" id="3_1o3iv"]
-[ext_resource type="AudioStream" uid="uid://by1gwyishlahl" path="res://audio/music/MUS_Celesta_155BPM.ogg" id="4_iufgp"]
-[ext_resource type="AudioStream" uid="uid://bq2erp06qxacg" path="res://audio/music/MUS_Organ_155BPM.ogg" id="4_p4hht"]
-[ext_resource type="AudioStream" uid="uid://b1e5ack8p82lv" path="res://audio/music/MUS_CelloViolin_155BPM.ogg" id="5_l55hu"]
-[ext_resource type="AudioStream" uid="uid://bfu751xm8xibo" path="res://audio/music/MUS_Harp_155BPM.ogg" id="6_po3n2"]
+[ext_resource type="AudioStream" uid="uid://b8047pkxmqrkl" path="res://audio/music/MUS_Ensemble_155BPM.ogg" id="2_bur6i"]
+[ext_resource type="AudioStream" uid="uid://dif1qn4smybgx" path="res://audio/music/MUS_Celesta_155BPM.ogg" id="4_iufgp"]
+[ext_resource type="AudioStream" uid="uid://os328lt06xoa" path="res://audio/music/MUS_Organ_155BPM.ogg" id="4_p4hht"]
+[ext_resource type="AudioStream" uid="uid://bfa34w8c1iapm" path="res://audio/music/MUS_CelloViolin_155BPM.ogg" id="5_l55hu"]
+[ext_resource type="AudioStream" uid="uid://bq61td41jcxsk" path="res://audio/music/MUS_Harp_155BPM.ogg" id="6_po3n2"]
 [ext_resource type="AudioStream" uid="uid://jbr8rsg07i5q" path="res://audio/sounds/SFX_Cemetery.wav" id="7_pcoyp"]
-[ext_resource type="AudioStream" uid="uid://dowc3xxpysvbs" path="res://audio/music/MUS_Xylophone_155BPM.ogg" id="8_rvy6p"]
+[ext_resource type="AudioStream" uid="uid://b54qy7qt07xxj" path="res://audio/music/MUS_Xylophone_155BPM.ogg" id="8_rvy6p"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_y08ka"]
 clip_count = 6
 clip_0/name = &"Ensemble"
-clip_0/stream = ExtResource("3_1o3iv")
+clip_0/stream = ExtResource("2_bur6i")
 clip_0/auto_advance = 0
 clip_1/name = &"Celesta"
 clip_1/stream = ExtResource("4_iufgp")
@@ -108,16 +107,11 @@ Vector2i(5, 5): {
 [node name="Audio Manager" type="Node"]
 script = ExtResource("1_85fvm")
 
-[node name="MAIN AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_mgvhq")
-autoplay = true
-bus = &"Music"
-
-[node name="ADAPTIVE AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_y08ka")
 autoplay = true
 bus = &"Music"
 
-[node name="_TEMP SFX" type="AudioStreamPlayer" parent="."]
+[node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_pcoyp")
 bus = &"SFX"

@@ -4,15 +4,17 @@ func _on_cursor_selection_changed(selected):
 	if selected != null:
 		match selected.title:
 			"Necromancer":
-				$"ADAPTIVE AudioStreamPlayer".get_stream_playback().switch_to_clip_by_name("Organ")
+				$Music.get_stream_playback().switch_to_clip_by_name("Organ")
 			"Undead Army":
-				$"ADAPTIVE AudioStreamPlayer".get_stream_playback().switch_to_clip_by_name("Xylophone")
+				$Music.get_stream_playback().switch_to_clip_by_name("Xylophone")
+			"Human Army":
+				$Music.get_stream_playback().switch_to_clip_by_name("CelloViolin")
 			"Cemetery":
-				$"ADAPTIVE AudioStreamPlayer".get_stream_playback().switch_to_clip_by_name("Celesta")
-				$"_TEMP SFX".play()
+				$Music.get_stream_playback().switch_to_clip_by_name("Celesta")
+				$SFX.play()
 			"Village":
-				$"ADAPTIVE AudioStreamPlayer".get_stream_playback().switch_to_clip_by_name("Harp")
+				$Music.get_stream_playback().switch_to_clip_by_name("Harp")
 			_:
-				$"ADAPTIVE AudioStreamPlayer".get_stream_playback().switch_to_clip_by_name("Ensemble")
+				$Music.get_stream_playback().switch_to_clip_by_name("Ensemble")
 	else:
-		$"ADAPTIVE AudioStreamPlayer".get_stream_playback().switch_to_clip_by_name("Ensemble")
+		$Music.get_stream_playback().switch_to_clip_by_name("Ensemble")

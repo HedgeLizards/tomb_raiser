@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://by1gwyishlahl"
+uid="uid://dif1qn4smybgx"
 path="res://.godot/imported/MUS_Celesta_155BPM.ogg-365ab8fa4080eb4cdb797cc21d4a607e.oggvorbisstr"
 
 [deps]
@@ -16,4 +16,4 @@ loop=true
 loop_offset=0.0
 bpm=155.0
 beat_count=0
-bar_beats=4
+bar_beats=3

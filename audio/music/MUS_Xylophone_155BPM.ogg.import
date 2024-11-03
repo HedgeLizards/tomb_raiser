@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://dowc3xxpysvbs"
+uid="uid://b54qy7qt07xxj"
 path="res://.godot/imported/MUS_Xylophone_155BPM.ogg-2b65b941e05224377b5134ffefcb5a3a.oggvorbisstr"
 
 [deps]
@@ -16,4 +16,4 @@ loop=true
 loop_offset=0.0
 bpm=155.0
 beat_count=0
-bar_beats=4
+bar_beats=3
