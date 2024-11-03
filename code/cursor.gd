@@ -48,6 +48,8 @@ func select_unit_action(action: ActionType) -> void:
 		%Selections.set_cell(pos, 0, Vector2i.ZERO, 4)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not %Turn.can_interact():
+		return
 	var click_pos: Vector2
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:

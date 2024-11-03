@@ -93,3 +93,18 @@ func _on_turn_mouse_exited():
 
 func on_ui_action_selected(action: ActionType):
 	action_selected.emit(action)
+
+func show_notice(notice, seconds = null):
+	$Notice.text = notice
+	$Notice.modulate.a = 1
+	
+	if seconds != null:
+		$NoticeTimer.start(seconds)
+	elif !$NoticeTimer.is_stopped():
+		$NoticeTimer.stop()
+
+func hide_notice():
+	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Notice, 'modulate:a', 0, 0.2)
+
+func _on_turn_turn_changed(status: int, description: String) -> void:
+	show_notice(description, 0.8)

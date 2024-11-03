@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=22 format=4 uid="uid://ba6qjddxcbjdt"]
 
 [ext_resource type="Script" path="res://code/MapCamera2D.gd" id="1_7m1iq"]
 [ext_resource type="Script" path="res://code/main.gd" id="1_12yn6"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dfr5m2k6trtw7" path="res://scenes/music.tscn" id="10_ku836"]
 [ext_resource type="PackedScene" uid="uid://cyerdrm61isi0" path="res://scenes/ui.tscn" id="10_s3ry7"]
 [ext_resource type="PackedScene" uid="uid://bc8aaoejhsv01" path="res://scenes/units/villagers.tscn" id="12_2eah3"]
+[ext_resource type="Script" path="res://code/turn.gd" id="14_6khdw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_unqnr"]
 texture = ExtResource("4_48aqy")
@@ -79,10 +80,18 @@ scale = Vector2(0.7, 0.7)
 
 [node name="Villagers" parent="Units" instance=ExtResource("12_2eah3")]
 position = Vector2(-91, -589)
+raw_actions = Array[int]([1])
 
 [node name="Cursor" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_n1hes")
+
+[node name="Turn" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("14_6khdw")
+
+[node name="Timer" type="Timer" parent="Turn"]
+one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
@@ -99,5 +108,6 @@ drag_inertia = 0.0
 [node name="Music" parent="." instance=ExtResource("10_ku836")]
 
 [connection signal="selection_changed" from="Cursor" to="UI" method="_on_cursor_selection_changed"]
+[connection signal="turn_changed" from="Turn" to="UI" method="_on_turn_turn_changed"]
 [connection signal="action_selected" from="UI" to="Cursor" method="_on_ui_action_selected"]
-[connection signal="end_turn_pressed" from="UI" to="." method="_on_ui_end_turn_pressed"]
+[connection signal="end_turn_pressed" from="UI" to="Turn" method="_on_ui_end_turn_pressed"]

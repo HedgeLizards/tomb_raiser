@@ -6,7 +6,3 @@ func _input(event):
 			$Cursor.select_none()
 		elif event.keycode == KEY_M:
 			AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
-
-func _on_ui_end_turn_pressed() -> void:
-	%Units.reset_turn()
-	%Cursor.select_none()
