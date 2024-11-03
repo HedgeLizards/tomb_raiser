@@ -18,6 +18,8 @@ class Raise extends ActionType:
 		return 1
 	func cost() -> int:
 		return 3
+	func healing() -> int:
+		return 0
 	func title() -> String:
 		return "Raise Undead"
 	func no_targets_nearby_reason() -> String:
@@ -27,6 +29,8 @@ class Attack extends ActionType:
 		return false
 	func cost() -> int:
 		return 1
+	func healing() -> int:
+		return 0
 	func range() -> int:
 		return 1
 	func title() -> String:
@@ -37,6 +41,8 @@ class Heal extends ActionType:
 	func can_perform(tile: Tile) -> bool:
 		return false
 	func cost() -> int:
+		return 2
+	func healing() -> int:
 		return 2
 	func range() -> int:
 		return 2

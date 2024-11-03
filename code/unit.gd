@@ -100,8 +100,11 @@ func selectable() -> Selectable:
 	for action in actions:
 		var sa: Selectable.Action = Selectable.Action.new()
 		var cost = action.cost()
+		var healing = action.healing()
 		sa.type = action
 		sa.stats = {"action_cost": cost, "range": action.range()}
+		if healing > 0:
+			sa.stats.healing = healing
 		sa.enabled = true
 		sa.title = action.title()
 		if cost > action_points:

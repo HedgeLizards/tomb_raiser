@@ -1,13 +1,14 @@
 extends PanelContainer
 
-const COLOR_DISABLED = Color8(128, 128, 128)
-var action_type: ActionType
+signal action_selected(action)
 
-signal action_selected(action: ActionType)
+const COLOR_DISABLED = Color8(128, 128, 128)
+
+var action_type
 
 func setUp(action: Selectable.Action):
 	$VBoxContainer/Title.text = action.title
-	action_type = action.type
+	
 	for stat in ['action_cost', 'healing', 'damage', 'range']:
 		var node = $VBoxContainer/Stats.get_node(stat.to_pascal_case())
 		
@@ -27,14 +28,15 @@ func setUp(action: Selectable.Action):
 			label.add_theme_color_override('font_color', COLOR_DISABLED)
 		
 		$VBoxContainer/DisabledReason.text = '(%s)' % action.disabled_reason
+	
+	action_type = action.type
+
+func _on_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		action_selected.emit(action_type)
 
 func _on_mouse_entered():
 	get_theme_stylebox('panel').bg_color = Color8(96, 96, 96)
 
 func _on_mouse_exited():
 	get_theme_stylebox('panel').bg_color = Color8(32, 32, 32, 196)
-
-
-func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		action_selected.emit(action_type)
