@@ -11,6 +11,7 @@ var units: Node2D
 enum Faction {Undead, Human}
 @export var faction: Faction
 var AttackEffect = preload("res://scenes/effects/attack_effect.tscn")
+var HealEffect = preload("res://scenes/effects/heal_effect.tscn")
 
 var mappos: Vector2i
 @onready var action_points = max_action_points
@@ -83,7 +84,13 @@ func targets(action: ActionType) -> Array[Vector2i]:
 	#return []
 	if action.cost(action_points) > action_points:
 		return []
-	return tilemap.get_surrounding_cells(mappos).filter(func(pos): return can_act(action, pos))
+	var in_range: Array[Vector2i] = [mappos]
+	for _i in action.range():
+		for j in in_range.size():
+			for neighbour: Vector2i in tilemap.get_surrounding_cells(in_range[j]):
+				if not in_range.has(neighbour):
+					in_range.push_back(neighbour)
+	return in_range.filter(func(pos): return can_act(action, pos))
 
 func can_act(action: ActionType, pos: Vector2i) -> bool:
 	if not (action in actions):
@@ -103,6 +110,13 @@ func act(action: ActionType, pos: Vector2i):
 		get_parent().show_effect(pos, effect)
 		if enemy.health == 0:
 			enemy.queue_free()
+	if is_instance_of(action, ActionType.Heal):
+		var ally = units.unit_at(pos)
+		var healing: int = min(action.healing(), ally.max_health - ally.health)
+		ally.health += healing
+		var effect = HealEffect.instantiate()
+		effect.set_text(str(healing))
+		get_parent().show_effect(pos, effect)
 	action_points -= action.cost(action_points)
 
 func selectable() -> Selectable:
