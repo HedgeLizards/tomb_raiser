@@ -49,7 +49,7 @@ theme_override_constants/separation = 12
 
 [node name="ActionCost" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
-tooltip_text = "Action points"
+tooltip_text = "Action cost"
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/ActionCost"]
 layout_mode = 2
@@ -62,8 +62,7 @@ expand_mode = 3
 
 [node name="Damage" type="HBoxContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
-tooltip_text = "Attack damage
-"
+tooltip_text = "Damage"
 
 [node name="Label" type="Label" parent="VBoxContainer/Stats/Damage"]
 layout_mode = 2
