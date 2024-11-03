@@ -11,6 +11,7 @@ var units: Node2D
 enum Faction {Undead, Human}
 @export var faction: Faction
 var AttackEffect = preload("res://scenes/effects/attack_effect.tscn")
+var HealEffect = preload("res://scenes/effects/heal_effect.tscn")
 
 var mappos: Vector2i
 @onready var action_points = max_action_points
@@ -83,9 +84,15 @@ func _search_tiles(max_distance: int, callback: Callable):
 
 func targets(action: ActionType) -> Array[Vector2i]:
 	#return []
-	if action.cost() > action_points:
+	if action.cost(action_points) > action_points:
 		return []
-	return tilemap.get_surrounding_cells(mappos).filter(func(pos): return can_act(action, pos))
+	var in_range: Array[Vector2i] = [mappos]
+	for _i in action.range():
+		for j in in_range.size():
+			for neighbour: Vector2i in tilemap.get_surrounding_cells(in_range[j]):
+				if not in_range.has(neighbour):
+					in_range.push_back(neighbour)
+	return in_range.filter(func(pos): return can_act(action, pos))
 
 func can_act(action: ActionType, pos: Vector2i) -> bool:
 	if not (action in actions and pos in tilemap.get_surrounding_cells(mappos)):
@@ -93,20 +100,26 @@ func can_act(action: ActionType, pos: Vector2i) -> bool:
 	return action.can_perform(self, tilemap.get_tile(pos), units.unit_at(pos))
 
 func act(action: ActionType, pos: Vector2i):
-	action_points -= action.cost()
 	if is_instance_of(action, ActionType.Raise):
 		var to_raise: PackedScene = tilemap.get_tile(pos).raised
 		get_parent().add_unit(pos, to_raise)
 	if is_instance_of(action, ActionType.Attack):
 		var enemy = units.unit_at(pos)
-		var damage: int = min(action.damage * (action.cost() + action_points), enemy.health)
+		var damage: int = min(action.damage(action_points), enemy.health)
 		enemy.health -= damage
-		action_points = 0
 		var effect = AttackEffect.instantiate()
 		effect.set_text(str(damage))
 		get_parent().show_effect(pos, effect)
-		if enemy.health <= 0:
+		if enemy.health == 0:
 			enemy.queue_free()
+	if is_instance_of(action, ActionType.Heal):
+		var ally = units.unit_at(pos)
+		var healing: int = min(action.healing(), ally.max_health - ally.health)
+		ally.health += healing
+		var effect = HealEffect.instantiate()
+		effect.set_text(str(healing))
+		get_parent().show_effect(pos, effect)
+	action_points -= action.cost(action_points)
 
 func selectable() -> Selectable:
 	#todo: get these value from actual unit
@@ -127,14 +140,15 @@ func selectable() -> Selectable:
 	selectable.actions = []
 	for action in actions:
 		var sa: Selectable.Action = Selectable.Action.new()
-		var cost = action.cost()
-		var healing = action.healing()
+		var cost: int = action.cost(action_points)
+		var damage: int = action.damage(action_points)
+		var healing: int = action.healing()
 		sa.type = action
 		sa.stats = {"action_cost": cost, "range": action.range()}
+		if damage > 0:
+			sa.stats.damage = damage
 		if healing > 0:
 			sa.stats.healing = healing
-		if action.damage > 0:
-			sa.stats.damage = action.damage
 		sa.enabled = true
 		sa.title = action.title()
 		if faction != Faction.Undead:

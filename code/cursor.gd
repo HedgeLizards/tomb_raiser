@@ -44,8 +44,9 @@ func select_tile(tile: Tile, pos: Vector2i) -> void:
 func select_unit_action(action: ActionType) -> void:
 	selected_unit_action = action
 	%Selections.clear()
+	var selections_scene_index = action.selections_scene_index()
 	for pos in selected_unit.targets(action):
-		%Selections.set_cell(pos, 0, Vector2i.ZERO, 4)
+		%Selections.set_cell(pos, 0, Vector2i.ZERO, selections_scene_index)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not %Turn.can_interact():
@@ -74,7 +75,7 @@ func tile_clicked(pos: Vector2i) -> void:
 		return
 	if selected_unit and selected_unit.faction == selected_unit.Faction.Undead:
 		if selected_unit_action != null:
-			if selected_unit.can_act(selected_unit_action, pos):
+			if %Selections.get_cell_alternative_tile(pos) == selected_unit_action.selections_scene_index():
 				selected_unit.act(selected_unit_action, pos)
 				if selected_unit.can_do_action():
 					select_unit(selected_unit)

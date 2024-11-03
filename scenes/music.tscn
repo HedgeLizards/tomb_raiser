@@ -1,53 +1,49 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfr5m2k6trtw7"]
+[gd_scene load_steps=11 format=3 uid="uid://dfr5m2k6trtw7"]
 
 [ext_resource type="Script" path="res://code/music.gd" id="1_85fvm"]
-[ext_resource type="AudioStream" uid="uid://bbu51jymynlem" path="res://audio/music/MUS_Necromancer_155.ogg" id="1_b3j0y"]
-[ext_resource type="AudioStream" uid="uid://bndwni7ipqb1x" path="res://audio/music/MUS_Main_155.ogg" id="1_kbeom"]
-[ext_resource type="AudioStream" uid="uid://cenv63p45gpl3" path="res://audio/music/MUS_Skeleton_155.ogg" id="2_foxj7"]
-[ext_resource type="AudioStream" uid="uid://b7pshrxneerl4" path="res://audio/music/MUS_Violin_155.ogg" id="5_6q6ck"]
-[ext_resource type="AudioStream" uid="uid://cxesppaljb0tn" path="res://audio/music/MUS_Celesta_155.ogg" id="6_liehr"]
+[ext_resource type="AudioStream" uid="uid://c0qib2o8tn25o" path="res://audio/music/MUS_Main_155BPM.ogg" id="2_mgvhq"]
+[ext_resource type="AudioStream" uid="uid://br6yuwbo3n55r" path="res://audio/music/MUS_StringEnsemble_155BPM.ogg" id="3_1o3iv"]
+[ext_resource type="AudioStream" uid="uid://by1gwyishlahl" path="res://audio/music/MUS_Celesta_155BPM.ogg" id="4_iufgp"]
+[ext_resource type="AudioStream" uid="uid://bq2erp06qxacg" path="res://audio/music/MUS_Organ_155BPM.ogg" id="4_p4hht"]
+[ext_resource type="AudioStream" uid="uid://b1e5ack8p82lv" path="res://audio/music/MUS_CelloViolin_155BPM.ogg" id="5_l55hu"]
+[ext_resource type="AudioStream" uid="uid://bfu751xm8xibo" path="res://audio/music/MUS_Harp_155BPM.ogg" id="6_po3n2"]
 [ext_resource type="AudioStream" uid="uid://jbr8rsg07i5q" path="res://audio/sounds/SFX_Cemetery.wav" id="7_pcoyp"]
+[ext_resource type="AudioStream" uid="uid://dowc3xxpysvbs" path="res://audio/music/MUS_Xylophone_155BPM.ogg" id="8_rvy6p"]
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_fm3wt"]
-clip_count = 4
-clip_0/name = &"Skeleton"
-clip_0/stream = ExtResource("2_foxj7")
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_y08ka"]
+clip_count = 6
+clip_0/name = &"Ensemble"
+clip_0/stream = ExtResource("3_1o3iv")
 clip_0/auto_advance = 0
-clip_1/name = &"Necromancer"
-clip_1/stream = ExtResource("1_b3j0y")
+clip_1/name = &"Celesta"
+clip_1/stream = ExtResource("4_iufgp")
 clip_1/auto_advance = 0
-clip_2/name = &"Violin"
-clip_2/stream = ExtResource("5_6q6ck")
+clip_2/name = &"CelloViolin"
+clip_2/stream = ExtResource("5_l55hu")
 clip_2/auto_advance = 0
-clip_3/name = &"Celesta"
-clip_3/stream = ExtResource("6_liehr")
+clip_3/name = &"Harp"
+clip_3/stream = ExtResource("6_po3n2")
 clip_3/auto_advance = 0
+clip_4/name = &"Organ"
+clip_4/stream = ExtResource("4_p4hht")
+clip_4/auto_advance = 0
+clip_5/name = &"Xylophone"
+clip_5/stream = ExtResource("8_rvy6p")
+clip_5/auto_advance = 0
 _transitions = {
+Vector2i(0, -1): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
 Vector2i(0, 0): {
 "fade_beats": 1,
 "fade_mode": 0,
 "from_time": 0,
 "to_time": 0
 },
-Vector2i(0, 1): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(0, 2): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(0, 3): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(1, 0): {
+Vector2i(1, -1): {
 "fade_beats": 1,
 "fade_mode": 3,
 "from_time": 0,
@@ -59,25 +55,7 @@ Vector2i(1, 1): {
 "from_time": 0,
 "to_time": 0
 },
-Vector2i(1, 2): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(1, 3): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(2, 0): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(2, 1): {
+Vector2i(2, -1): {
 "fade_beats": 1,
 "fade_mode": 3,
 "from_time": 0,
@@ -89,25 +67,7 @@ Vector2i(2, 2): {
 "from_time": 0,
 "to_time": 0
 },
-Vector2i(2, 3): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(3, 0): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(3, 1): {
-"fade_beats": 1,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(3, 2): {
+Vector2i(3, -1): {
 "fade_beats": 1,
 "fade_mode": 3,
 "from_time": 0,
@@ -118,19 +78,43 @@ Vector2i(3, 3): {
 "fade_mode": 0,
 "from_time": 0,
 "to_time": 0
+},
+Vector2i(4, -1): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(4, 4): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(5, -1): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(5, 5): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
 }
 }
 
-[node name="Adaptive Music" type="Node"]
+[node name="Audio Manager" type="Node"]
 script = ExtResource("1_85fvm")
 
 [node name="MAIN AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_kbeom")
+stream = ExtResource("2_mgvhq")
 autoplay = true
 bus = &"Music"
 
 [node name="ADAPTIVE AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamInteractive_fm3wt")
+stream = SubResource("AudioStreamInteractive_y08ka")
 autoplay = true
 bus = &"Music"
 

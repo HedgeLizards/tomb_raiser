@@ -1,6 +1,6 @@
-extends Node2D
+extends Control
 
-var lifetime: float = 1.0
+var lifetime: float = 1.5
 var speed: float = 200
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +14,8 @@ func _process(delta: float) -> void:
 	lifetime -= delta
 	if lifetime <= 0:
 		queue_free()
+	elif lifetime < 1.0:
+		modulate.a = lifetime
 
 func set_text(text: String) -> void:
 	%Label.text = text
