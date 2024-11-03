@@ -87,7 +87,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.9, 1.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -0.349066]
+"values": [1.0472, 1.5708]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -133,7 +133,6 @@ libraries = {
 autoplay = "Popup"
 
 [node name="SkeletonPuppet" type="Node2D" parent="."]
-position = Vector2(0, -300)
 
 [node name="UnitSkeletonLegs" type="Sprite2D" parent="SkeletonPuppet"]
 position = Vector2(0, -292)
@@ -147,13 +146,13 @@ offset = Vector2(-20, -30)
 [node name="UnitSkeletonsArm" type="Sprite2D" parent="SkeletonPuppet/UnitSkeletons"]
 texture_filter = 4
 position = Vector2(-154, -26)
-rotation = -0.339292
+rotation = 1.48731
 texture = ExtResource("5_fvwi7")
-offset = Vector2(-21.57, -146.6)
+offset = Vector2(-149.05, 30.41)
 
 [node name="UnitSkeletonHead" type="Sprite2D" parent="SkeletonPuppet/UnitSkeletons"]
 position = Vector2(-22, -156)
-rotation = -0.11906
+rotation = -0.0920241
 scale = Vector2(1.17737, 1.17737)
 texture = ExtResource("6_qgasr")
 offset = Vector2(-2.17, -46.19)
