@@ -109,7 +109,7 @@ _data = {
 "Wiggle": SubResource("Animation_iei02")
 }
 
-[node name="SkeletonSimple" type="Node2D"]
+[node name="Skeleton" type="Node2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_kjdw6")
 raw_actions = Array[int]([1])

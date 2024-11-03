@@ -39,14 +39,21 @@ func reset_turn() -> void:
 func walk_to(last_step: WalkStep) -> void:
 	action_points -= last_step.cost
 	mappos = last_step.pos
+	print("walk ", last_step.pos)
 	var tween = create_tween()
 	var previous_position: Vector2
 	for step in last_step.path():
 		var next_position: Vector2 = tilemap.map_to_local(step.pos)
+		print(position, " ", next_position)
 		if step.previous == null:
 			previous_position = next_position
 			continue
-		tween.tween_callback(func(): scale.x = abs(scale.x) * sign(previous_position.x - next_position.x))
+		tween.tween_callback(
+			func():
+				var direction = sign(previous_position.x - next_position.x)
+				if direction != 0:
+					scale.x = abs(scale.x) * direction
+		)
 		tween.tween_property(self, "position", next_position, 0.3)
 		previous_position = next_position
 

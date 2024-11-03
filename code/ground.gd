@@ -20,6 +20,16 @@ var tile_index = {
 	Vector2i(0, 2): VILLAGE
 }
 
+func _ready() -> void:
+	assert(
+		tile_set.tile_offset_axis == TileSet.TileOffsetAxis.TILE_OFFSET_AXIS_HORIZONTAL and tile_set.tile_layout == TileSet.TileLayout.TILE_LAYOUT_STAIRS_RIGHT
+		or tile_set.tile_offset_axis == TileSet.TileOffsetAxis.TILE_OFFSET_AXIS_VERTICAL and tile_set.tile_layout == TileSet.TileLayout.TILE_LAYOUT_STAIRS_DOWN
+	)
+	assert(%Selections.tile_set.tile_offset_axis == tile_set.tile_offset_axis)
+	assert(%Selections.tile_set.tile_layout == tile_set.tile_layout)
+	assert(%Selections.tile_set.tile_size == tile_set.tile_size)
+	
+
 func get_tile(pos: Vector2i) -> Tile:
 	if get_cell_source_id(pos) != 1:
 		return null
@@ -28,7 +38,7 @@ func get_tile(pos: Vector2i) -> Tile:
 	return tile
 
 func distance_between(a: Vector2i, b: Vector2i) -> int:
-	assert(tile_set.tile_layout == TileSet.TileLayout.TILE_LAYOUT_STAIRS_RIGHT)
+		
 	# https://www.redblobgames.com/grids/hexagons/#distances-axial
 	var d = b - a
 	var r = d.x
