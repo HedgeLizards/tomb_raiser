@@ -25,12 +25,13 @@ func get_tile(pos: Vector2i) -> Tile:
 		return null
 	var tile = tile_index.get(get_cell_atlas_coords(pos))
 	
-	#print("tile ", tile, " ", get_cell_atlas_coords(pos))s
 	return tile
-	#var source = tile_set.get_source(get_cell_source_id(pos))
-	##print("source ", source)
-	#var scene = source.get_scene_tile_scene(get_cell_alternative_tile(pos))
-	#print("scene ", scene)
-	#print(scene.walkable)
-	##print("cell  ", get_cell_alternative_tile(pos))
-	#return null
+
+func distance_between(a: Vector2i, b: Vector2i) -> int:
+	assert(tile_set.tile_layout == TileSet.TileLayout.TILE_LAYOUT_STAIRS_RIGHT)
+	# https://www.redblobgames.com/grids/hexagons/#distances-axial
+	var d = b - a
+	var r = d.x
+	var q = d.y
+	return (abs(q) + abs(r) + abs(r + q)) / 2
+	
