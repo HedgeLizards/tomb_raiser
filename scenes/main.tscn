@@ -1,14 +1,18 @@
-[gd_scene load_steps=16 format=4 uid="uid://ba6qjddxcbjdt"]
+[gd_scene load_steps=20 format=4 uid="uid://ba6qjddxcbjdt"]
 
 [ext_resource type="Script" path="res://code/MapCamera2D.gd" id="1_7m1iq"]
 [ext_resource type="Script" path="res://code/main.gd" id="1_12yn6"]
 [ext_resource type="Script" path="res://code/cursor.gd" id="1_n1hes"]
-[ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selected.tscn" id="3_jehwe"]
+[ext_resource type="PackedScene" uid="uid://b7gjoog3ywbjf" path="res://scenes/selections/movable.tscn" id="3_jehwe"]
 [ext_resource type="PackedScene" uid="uid://ykcb75qijlq" path="res://scenes/units/skeleton.tscn" id="3_t8oo7"]
 [ext_resource type="Texture2D" uid="uid://b8eybwy033ap8" path="res://textures/Tiles_atlas.png" id="4_48aqy"]
 [ext_resource type="Script" path="res://code/units.gd" id="4_dld28"]
+[ext_resource type="PackedScene" uid="uid://bbtgmn4cuvdm3" path="res://scenes/selections/selected.tscn" id="4_kb3x7"]
 [ext_resource type="Script" path="res://code/ground.gd" id="4_ytyvg"]
 [ext_resource type="PackedScene" uid="uid://05rsgs1cwttg" path="res://scenes/units/necromancer.tscn" id="6_mgcqv"]
+[ext_resource type="PackedScene" uid="uid://b4r1g8cujn6cs" path="res://scenes/selections/damageable.tscn" id="6_neb6g"]
+[ext_resource type="PackedScene" uid="uid://b0tr2o7s4ufnj" path="res://scenes/selections/healable.tscn" id="7_5gw3k"]
+[ext_resource type="PackedScene" uid="uid://cjucu4rmnvgkx" path="res://scenes/selections/raisable.tscn" id="8_ccwbq"]
 [ext_resource type="PackedScene" uid="uid://dfr5m2k6trtw7" path="res://scenes/music.tscn" id="10_ku836"]
 [ext_resource type="PackedScene" uid="uid://cyerdrm61isi0" path="res://scenes/ui.tscn" id="10_s3ry7"]
 
@@ -31,7 +35,11 @@ tile_size = Vector2i(400, 400)
 sources/1 = SubResource("TileSetAtlasSource_unqnr")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8cjmg"]
+scenes/0/scene = ExtResource("4_kb3x7")
 scenes/1/scene = ExtResource("3_jehwe")
+scenes/2/scene = ExtResource("6_neb6g")
+scenes/3/scene = ExtResource("7_5gw3k")
+scenes/4/scene = ExtResource("8_ccwbq")
 
 [sub_resource type="TileSet" id="TileSet_dyrtn"]
 tile_shape = 3

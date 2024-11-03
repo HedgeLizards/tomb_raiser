@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4r1g8cujn6cs"]
+
+[ext_resource type="Texture2D" uid="uid://bsi1ut64bmouy" path="res://textures/selected.png" id="1_qffnh"]
+
+[node name="Damageable" type="Sprite2D"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_qffnh")

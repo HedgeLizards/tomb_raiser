@@ -33,10 +33,11 @@ func select_unit(unit: Node) -> void:
 	#print(walkable)
 	selection_changed.emit(unit.selectable())
 
-func select_tile(tile: Tile) -> void:
+func select_tile(tile: Tile, pos: Vector2i) -> void:
 	clear_select()
 	selected_tile = tile
 	%Selections.clear()
+	%Selections.set_cell(pos, 0, Vector2i.ZERO, 0)
 	selection_changed.emit(tile.selectable())
 
 func select_unit_action(action: ActionType) -> void:
@@ -47,22 +48,17 @@ func select_unit_action(action: ActionType) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2
-	if event is InputEventMouseMotion:
-		#print("mouse motion ", event.)
-		click_start = NOT_CLICKING
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			click_start = event.position
 			return
 		else:
-			if click_start == event.position:
+			if event.position.distance_to(click_start) < 3:
 				click_start = NOT_CLICKING
 				click_pos = event.position
 			else:
 				click_start = NOT_CLICKING
 				return
-	elif event is InputEventScreenTouch:
-		click_pos = event.position
 	else:
 		return
 	var clicked_tile: Vector2i = %Ground.local_to_map(%Ground.make_canvas_position_local(click_pos))
@@ -94,8 +90,10 @@ func tile_clicked(pos: Vector2i) -> void:
 			return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:
-		select_tile(tile)
-
+		if selected_tile == tile:
+			select_none()
+		else:
+			select_tile(tile, pos)
 
 func _on_ui_action_selected(action: ActionType) -> void:
 	select_unit_action(action)
