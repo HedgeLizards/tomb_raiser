@@ -35,49 +35,51 @@ func _ready() -> void:
 func reset_turn() -> void:
 	action_points = max_action_points
 
-func walk_to(tile: WalkTile) -> void:
-	action_points -= tile.cost
-	mappos = tile.path.back()
+func walk_to(last_step: WalkStep) -> void:
+	action_points -= last_step.cost
+	mappos = last_step.pos
 	var tween = create_tween()
-	for pos in tile.path:
-		tween.tween_property(self, "position", tilemap.map_to_local(pos), 0.3)
+	for step in last_step.path():
+		tween.tween_property(self, "position", tilemap.map_to_local(step.pos), 0.3)
 
 func can_do_action() -> bool:
 	return action_points > 0
 
 
-class WalkTile:
-	var path: Array[Vector2i]
-	var cost: int
-	func _init(p: Array[Vector2i], c: int) -> void:
-		self.path = p
-		self.cost = c
+func nearest_opponent() -> WalkStep:
+	var has_opponent = func (tile):
+		var unit = units.unit_at(tile.pos)
+		return unit != null and unit.faction != faction
+	return _search_tiles(100, has_opponent)
 
 func walkable_tiles() -> Dictionary:
+	var walkable = {}
+	_search_tiles(action_points, func(tile): walkable[tile.pos] = tile)
+	for unit in units.get_children():
+		walkable.erase(unit.mappos)
+	return walkable
+
+func _search_tiles(max_distance: int, callback: Callable):
 	var start = Time.get_ticks_msec()
-	var frontier: Array[WalkTile] = [WalkTile.new([mappos], 0)]
+	var frontier: Array[WalkStep] = [WalkStep.new(mappos, 0)]
 	var visited: Dictionary = {}
 	while frontier.size() > 0:
-		var tile: WalkTile = frontier.pop_front()
-		var pos = tile.path.back()
-		var old: WalkTile = visited.get(pos)
-		if old != null and old.cost <= tile.cost:
+		var step: WalkStep = frontier.pop_front()
+		var pos = step.pos
+		var old: WalkStep = visited.get(pos)
+		if old != null and old.cost <= step.cost:
 			continue
 		
-		visited[pos] = tile
-		for neighbour: Vector2i in tilemap.get_surrounding_cells(pos):
+		visited[step.pos] = step
+		if callback.call(step):
+			return step
+		for neighbour: Vector2i in tilemap.get_surrounding_cells(step.pos):
 			var tiledata: Tile = tilemap.get_tile(neighbour)
 			if tiledata and tiledata.walkable:
-				var cost: int = tile.cost + tiledata.walk_cost
-				if cost <= action_points:
-					var path = tile.path.duplicate()
-					path.push_back(neighbour)
-					frontier.push_back(WalkTile.new(path, cost))
-	var end = Time.get_ticks_msec()
-	#visited.erase(mappos)
-	for unit in units.get_children():
-		visited.erase(unit.mappos)
-	return visited
+				var cost: int = step.cost + tiledata.walk_cost
+				if cost <= max_distance:
+					frontier.push_back(WalkStep.new(neighbour, cost, step))
+	
 
 func targets(action: ActionType) -> Array[Vector2i]:
 	#return []
@@ -86,9 +88,9 @@ func targets(action: ActionType) -> Array[Vector2i]:
 	return tilemap.get_surrounding_cells(mappos).filter(func(pos): return can_act(action, pos))
 
 func can_act(action: ActionType, pos: Vector2i) -> bool:
-	if not (action in actions):
+	if not (action in actions and pos in tilemap.get_surrounding_cells(mappos)):
 		return false
-	return action.can_perform(tilemap.get_tile(pos), units.unit_at(pos))
+	return action.can_perform(self, tilemap.get_tile(pos), units.unit_at(pos))
 
 func act(action: ActionType, pos: Vector2i):
 	action_points -= action.cost()

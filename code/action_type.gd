@@ -3,7 +3,7 @@ extends RefCounted
 
 var damage = -1
 
-func can_perform(tile: Tile, unit: Node) -> bool:
+func can_perform(actor: Node, tile: Tile, unit: Node) -> bool:
 	return false
 
 func cost() -> int:
@@ -12,15 +12,22 @@ func cost() -> int:
 func title() -> String:
 	return "Unknown action"
 
+func does_attack() -> bool:
+	return false
+
+func range() -> int:
+	return 1
+
+func healing() -> int: 
+	return 0
+
 class Raise extends ActionType:
-	func can_perform(tile: Tile, unit: Node) -> bool:
+	func can_perform(actor: Node, tile: Tile, unit: Node) -> bool:
 		return tile.raised != null
 	func range() -> int:
 		return 1
 	func cost() -> int:
 		return 3
-	func healing() -> int:
-		return 0
 	func title() -> String:
 		return "Raise Undead"
 	func no_targets_nearby_reason() -> String:
@@ -28,12 +35,12 @@ class Raise extends ActionType:
 class Attack extends ActionType:
 	func _init(damage) -> void:
 		self.damage = damage
-	func can_perform(tile: Tile, unit: Node) -> bool:
-		return unit != null and unit.faction == unit.Faction.Human
+	func can_perform(actor: Node, tile: Tile, unit: Node) -> bool:
+		return unit != null and unit.faction != actor.faction
 	func cost() -> int:
 		return 1
-	func healing() -> int:
-		return 0
+	func does_attack():
+		return true
 	func range() -> int:
 		return 1
 	func title() -> String:
@@ -41,7 +48,7 @@ class Attack extends ActionType:
 	func no_targets_nearby_reason() -> String:
 		return "no humans in range"
 class Heal extends ActionType:
-	func can_perform(tile: Tile, unit: Node) -> bool:
+	func can_perform(actor: Node, tile: Tile, unit: Node) -> bool:
 		return false
 	func cost() -> int:
 		return 2

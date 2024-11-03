@@ -11,10 +11,14 @@ var is_animating: bool = false
 func _on_ui_end_turn_pressed() -> void:
 	if !can_interact():
 		return
+	start_enemy_turn()
+
+func start_enemy_turn() -> void:
 	turn_status = TurnStatus.EnemyTurn
 	%Cursor.select_none()
 	interact_state_changed.emit(can_interact())
 	turn_changed.emit(turn_status, "Enemy Turn")
+	%Units.run_enemy_turn()
 	$Timer.timeout.connect(start_player_turn)
 	$Timer.start(1.0)
 
