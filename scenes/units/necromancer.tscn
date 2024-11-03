@@ -134,3 +134,11 @@ libraries = {
 "": SubResource("AnimationLibrary_0e867")
 }
 autoplay = "Float"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -425)
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(10, -315, 180, -100, 250, 190, -20, 315, -170, 200, -180, 0, -60, -310)

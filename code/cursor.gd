@@ -11,6 +11,17 @@ var selected_unit_action: ActionType = null # only possible when selected_unit i
 
 const NOT_CLICKING: Vector2 = Vector2(-1_000_000, -1_000_000)
 var click_start: Vector2 = NOT_CLICKING
+var clicked_unit: Node2D = null
+
+
+func _ready():
+	var necromancer = %Units.get_node("Necromancer")
+	
+	necromancer.get_node("Area2D").input_event.connect(
+		func(_viewport: Node, event: InputEvent, _shape_idx: int):
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				clicked_unit = necromancer
+	)
 
 
 func clear_select() -> void:
@@ -73,7 +84,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	tile_clicked(clicked_tile)
 
 func tile_clicked(pos: Vector2i) -> void:
-	var unit: Node2D = %Units.unit_at(pos)
+	var unit: Node2D = %Units.unit_at(pos) if clicked_unit == null else clicked_unit
+	clicked_unit = null
 	if selected_unit != null and selected_unit == unit:
 		select_none()
 		return
