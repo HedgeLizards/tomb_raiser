@@ -106,6 +106,24 @@ theme_override_fonts/font = ExtResource("2_qxa3q")
 theme_override_font_sizes/font_size = 24
 text = "End turn"
 
+[node name="Notice" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -47.0
+offset_right = 0.5
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_o4gh3")
+theme_override_font_sizes/font_size = 64
+
+[node name="Timer" type="Timer" parent="Notice"]
+one_shot = true
+
 [node name="Selection" type="VBoxContainer" parent="."]
 visible = false
 anchors_preset = 12
@@ -214,30 +232,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 
-[node name="NoticeTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Notice" type="RichTextLabel" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 72
-bbcode_enabled = true
-fit_content = true
-autowrap_mode = 0
-
 [connection signal="gui_input" from="Quit" to="." method="_on_quit_gui_input"]
 [connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_exited" from="Quit" to="." method="_on_quit_mouse_exited"]
 [connection signal="gui_input" from="Turn" to="." method="_on_turn_gui_input"]
 [connection signal="mouse_entered" from="Turn" to="." method="_on_turn_mouse_entered"]
 [connection signal="mouse_exited" from="Turn" to="." method="_on_turn_mouse_exited"]
-[connection signal="timeout" from="NoticeTimer" to="." method="hide_notice"]
+[connection signal="timeout" from="Notice/Timer" to="." method="_on_timer_timeout"]

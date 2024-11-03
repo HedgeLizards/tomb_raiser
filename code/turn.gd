@@ -14,7 +14,7 @@ func _on_ui_end_turn_pressed() -> void:
 	turn_status = TurnStatus.EnemyTurn
 	%Cursor.select_none()
 	interact_state_changed.emit(can_interact())
-	turn_changed.emit(turn_status, "Enemy turn")
+	turn_changed.emit(turn_status, "Enemy Turn")
 	$Timer.timeout.connect(start_player_turn)
 	$Timer.start(1.0)
 
@@ -23,7 +23,7 @@ func start_player_turn() -> void:
 	turn_status = TurnStatus.PlayerTurn
 	%Cursor.select_none()
 	%Units.reset_turn()
-	turn_changed.emit(turn_status, "Player turn")
+	turn_changed.emit(turn_status, "Player Turn")
 	interact_state_changed.emit(can_interact())
 	
 	

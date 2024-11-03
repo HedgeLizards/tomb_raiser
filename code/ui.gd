@@ -2,8 +2,8 @@ extends CanvasLayer
 
 const UIAction = preload('res://scenes/ui_action.tscn')
 
+signal action_selected(action)
 signal end_turn_pressed
-signal action_selected(action: ActionType)
 
 func _ready():
 	if OS.has_feature('web'):
@@ -57,6 +57,12 @@ func _on_cursor_selection_changed(selected):
 	
 	$Selection.visible = true
 
+func _on_turn_turn_changed(_turn_status, description):
+	$Notice.text = description
+	$Notice.modulate.a = 1
+	
+	$Notice/Timer.start(0.7)
+
 func _on_quit_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		get_tree().change_scene_to_packed(load('res://scenes/menu.tscn'))
@@ -79,20 +85,8 @@ func _on_turn_mouse_entered():
 func _on_turn_mouse_exited():
 	$Turn.get_theme_stylebox('panel').bg_color = Color8(64, 64, 64, 196)
 
-func on_ui_action_selected(action: ActionType):
-	action_selected.emit(action)
-
-func show_notice(notice, seconds = null):
-	$Notice.text = notice
-	$Notice.modulate.a = 1
-	
-	if seconds != null:
-		$NoticeTimer.start(seconds)
-	elif !$NoticeTimer.is_stopped():
-		$NoticeTimer.stop()
-
-func hide_notice():
+func _on_timer_timeout():
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Notice, 'modulate:a', 0, 0.2)
 
-func _on_turn_turn_changed(status: int, description: String) -> void:
-	show_notice(description, 0.8)
+func on_ui_action_selected(action):
+	action_selected.emit(action)

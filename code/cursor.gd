@@ -6,6 +6,7 @@ signal selection_changed(selected: Selectable)
 # Only one of selected_unit and selected_tile may be non-null at a time
 var selected_unit: Node = null
 var selected_tile: Tile = null
+var selected_unit_walkable_tiles = null # only possible when selected_unit is not null
 var selected_unit_action: ActionType = null # only possible when selected_unit is not null
 
 const NOT_CLICKING: Vector2 = Vector2(-1_000_000, -1_000_000)
@@ -15,6 +16,7 @@ var click_start: Vector2 = NOT_CLICKING
 func clear_select() -> void:
 	selected_unit = null
 	selected_tile = null
+	selected_unit_walkable_tiles = null
 	selected_unit_action = null
 	%Selections.clear()
 
@@ -27,11 +29,9 @@ func select_unit(unit: Node) -> void:
 	selected_unit = unit
 	print("selected ", unit.mappos, " ", unit)
 	if unit.faction == unit.Faction.Undead:
-		var walkable: Array[Vector2i]
-		walkable.assign(unit.walkable_tiles().keys()) #%Ground.get_surrounding_cells(unit.mappos)
-		for neighbour in walkable:
+		selected_unit_walkable_tiles = unit.walkable_tiles()
+		for neighbour in selected_unit_walkable_tiles.keys():
 			%Selections.set_cell(neighbour, 0, Vector2i.ZERO, 1)
-	#print(walkable)
 	selection_changed.emit(unit.selectable())
 
 func select_tile(tile: Tile, pos: Vector2i) -> void:
@@ -42,7 +42,7 @@ func select_tile(tile: Tile, pos: Vector2i) -> void:
 	selection_changed.emit(tile.selectable())
 
 func select_unit_action(action: ActionType) -> void:
-	self.selected_unit_action = action
+	selected_unit_action = action
 	%Selections.clear()
 	for pos in selected_unit.targets(action):
 		%Selections.set_cell(pos, 0, Vector2i.ZERO, 4)
@@ -81,8 +81,8 @@ func tile_clicked(pos: Vector2i) -> void:
 				else:
 					select_none()
 				return
-		elif selected_unit.can_walk_to(pos):
-			selected_unit.walk_to(pos)
+		elif selected_unit_walkable_tiles.has(pos):
+			selected_unit.walk_to(selected_unit_walkable_tiles[pos])
 			if selected_unit.can_do_action():
 				select_unit(selected_unit)
 			else:

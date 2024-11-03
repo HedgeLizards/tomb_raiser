@@ -64,6 +64,16 @@ script = ExtResource("4_ytyvg")
 unique_name_in_owner = true
 tile_set = SubResource("TileSet_dyrtn")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("1_7m1iq")
+zoom_min = 0.05
+zoom_max = 2.0
+pan_margin = 0.0
+drag_inertia = 0.0
+
 [node name="Units" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_dld28")
@@ -92,16 +102,6 @@ script = ExtResource("14_6khdw")
 
 [node name="Timer" type="Timer" parent="Turn"]
 one_shot = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.2, 0.2)
-limit_smoothed = true
-position_smoothing_enabled = true
-script = ExtResource("1_7m1iq")
-zoom_min = 0.05
-zoom_max = 2.0
-pan_margin = 0.0
-drag_inertia = 0.0
 
 [node name="UI" parent="." instance=ExtResource("10_s3ry7")]
 

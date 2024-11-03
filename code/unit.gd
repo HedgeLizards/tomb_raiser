@@ -26,44 +26,44 @@ func _ready() -> void:
 func reset_turn() -> void:
 	action_points = max_action_points
 
-func can_walk_to(pos: Vector2i) -> bool:
-	return walkable_tiles().has(pos)
-
-func walk_to(pos: Vector2i) -> void:
-	var cost: int = walkable_tiles()[pos].cost
-	action_points -= cost
-	mappos = pos
-	# todo: animation
-	position = tilemap.map_to_local(mappos)
+func walk_to(tile: WalkTile) -> void:
+	action_points -= tile.cost
+	mappos = tile.path.back()
+	var tween = create_tween()
+	for pos in tile.path:
+		tween.tween_property(self, "position", tilemap.map_to_local(pos), 0.3)
 
 func can_do_action() -> bool:
 	return action_points > 0
 
 
 class WalkTile:
-	var pos: Vector2i
+	var path: Array[Vector2i]
 	var cost: int
-	func _init(p: Vector2i, c: int) -> void:
-		self.pos = p
+	func _init(p: Array[Vector2i], c: int) -> void:
+		self.path = p
 		self.cost = c
 
 func walkable_tiles() -> Dictionary:
 	var start = Time.get_ticks_msec()
-	var frontier: Array[WalkTile] = [WalkTile.new(mappos, 0)]
+	var frontier: Array[WalkTile] = [WalkTile.new([mappos], 0)]
 	var visited: Dictionary = {}
 	while frontier.size() > 0:
 		var tile: WalkTile = frontier.pop_front()
-		var old: WalkTile = visited.get(tile.pos)
+		var pos = tile.path.back()
+		var old: WalkTile = visited.get(pos)
 		if old != null and old.cost <= tile.cost:
 			continue
 		
-		visited[tile.pos] = tile
-		for neighbour: Vector2i in tilemap.get_surrounding_cells(tile.pos):
+		visited[pos] = tile
+		for neighbour: Vector2i in tilemap.get_surrounding_cells(pos):
 			var tiledata: Tile = tilemap.get_tile(neighbour)
 			if tiledata and tiledata.walkable:
 				var cost: int = tile.cost + tiledata.walk_cost
 				if cost <= action_points:
-					frontier.push_back(WalkTile.new(neighbour, cost))
+					var path = tile.path.duplicate()
+					path.push_back(neighbour)
+					frontier.push_back(WalkTile.new(path, cost))
 	var end = Time.get_ticks_msec()
 	#visited.erase(mappos)
 	for unit in units.get_children():
