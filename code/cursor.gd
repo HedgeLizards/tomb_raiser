@@ -33,10 +33,11 @@ func select_unit(unit: Node) -> void:
 	#print(walkable)
 	selection_changed.emit(unit.selectable())
 
-func select_tile(tile: Tile) -> void:
+func select_tile(tile: Tile, pos: Vector2i) -> void:
 	clear_select()
 	selected_tile = tile
 	%Selections.clear()
+	%Selections.set_cell(pos, 0, Vector2i.ZERO, 0)
 	selection_changed.emit(tile.selectable())
 
 func select_unit_action(action) -> void:
@@ -84,4 +85,7 @@ func tile_clicked(pos: Vector2i) -> void:
 			return
 	var tile = %Ground.get_tile(pos)
 	if tile != null:
-		select_tile(tile)
+		if selected_tile == tile:
+			select_none()
+		else:
+			select_tile(tile, pos)

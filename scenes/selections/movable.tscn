@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7gjoog3ywbjf"]
 
-[ext_resource type="Texture2D" uid="uid://bsi1ut64bmouy" path="res://textures/selected.png" id="1_2fcnv"]
+[ext_resource type="Texture2D" uid="uid://bsi1ut64bmouy" path="res://textures/selected.png" id="1_g52yx"]
 
 [sub_resource type="Animation" id="Animation_5h4og"]
 length = 0.001
@@ -39,8 +39,9 @@ _data = {
 "Selector_spawn": SubResource("Animation_ereh7")
 }
 
-[node name="Selected" type="Sprite2D"]
-texture = ExtResource("1_2fcnv")
+[node name="Movable" type="Sprite2D"]
+modulate = Color(0, 0, 1, 1)
+texture = ExtResource("1_g52yx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
