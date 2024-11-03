@@ -122,7 +122,7 @@ func selectable() -> Selectable:
 		sa.title = action.title()
 		if faction != Faction.Undead:
 			sa.enabled = false
-			sa.disabled_reason = "Not under your control"
+			sa.disabled_reason = "not under your control"
 		elif cost > action_points:
 			sa.enabled = false
 			sa.disabled_reason = "not enough action points"

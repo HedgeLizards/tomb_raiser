@@ -35,18 +35,6 @@ func _on_cursor_selection_changed(selected):
 	else:
 		%Stats/HBoxContainer/Health.visible = false
 	
-	if selected.stats.has('damage'):
-		%Stats/HBoxContainer/Damage/Label.text = 'Damage: %d' % selected.stats.damage
-		%Stats/HBoxContainer/Damage.visible = true
-	else:
-		%Stats/HBoxContainer/Damage.visible = false
-	
-	if selected.stats.has('range'):
-		%Stats/HBoxContainer/Range/Label.text = 'Range: %d' % selected.stats.range
-		%Stats/HBoxContainer/Range.visible = true
-	else:
-		%Stats/HBoxContainer/Range.visible = false
-	
 	if selected.actions.is_empty():
 		%Description.text = selected.description
 		%Description.visible = true

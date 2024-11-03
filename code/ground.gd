@@ -4,7 +4,7 @@ extends TileMapLayer
 var WATER: Tile = Tile.new(-1, "Water", "A deep body of water. Impossible to traverse.")
 var GRASS: Tile = Tile.new(1, "Grassland", "An open area. Easy to traverse.")
 var MOUNTAIN: Tile = Tile.new(3, "Mountain", "A tall mountain. Difficult to traverse.")
-var CEMETERY: Tile = Tile.new(1, "Cemetery", "A burial ground. The necromancer can raise an undead army here.", {"raised": preload("res://scenes/units/skeleton.tscn")})
+var CEMETERY: Tile = Tile.new(1, "Cemetery", "A burial ground. The necromancer can raise an undead army here, which will decay each turn.", {"raised": preload("res://scenes/units/skeleton.tscn")})
 var TOMB: Tile = Tile.new(1, "Tomb", "The resting place of the necromancer. Once a legendary emperor, nowadays his legacy is all but forgotten. He hath risen to take back his lands.")
 var FOREST: Tile = Tile.new(2, "Forest", "A dense forest.")
 var VILLAGE: Tile = Tile.new(2, "Village", "A frightened village. Spawns a human army every X turns, until razed to the ground.")
