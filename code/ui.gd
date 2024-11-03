@@ -3,6 +3,7 @@ extends CanvasLayer
 const UIAction = preload('res://scenes/ui_action.tscn')
 
 signal end_turn_pressed
+signal action_selected(action: AT.ActionType)
 
 func _ready():
 	if OS.has_feature('web'):
@@ -60,6 +61,7 @@ func _on_cursor_selection_changed(selected):
 			var ui_action = UIAction.instantiate()
 			
 			ui_action.setUp(action)
+			ui_action.action_selected.connect(on_ui_action_selected)
 			
 			%Actions.add_child(ui_action)
 		
@@ -95,3 +97,6 @@ func _on_turn_mouse_entered():
 
 func _on_turn_mouse_exited():
 	$Turn.get_theme_stylebox('panel').bg_color = Color8(64, 64, 64, 196)
+
+func on_ui_action_selected(action: AT.ActionType):
+	action_selected.emit(action)
