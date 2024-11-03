@@ -1,13 +1,14 @@
 extends PanelContainer
 
 const COLOR_DISABLED = Color8(128, 128, 128)
-var action_type: AT.ActionType
+var action_type: ActionType
 
-signal action_selected(action: AT.ActionType)
+signal action_selected(action: ActionType)
 
 func setUp(action: Selectable.Action):
 	$VBoxContainer/Title.text = action.title
 	action_type = action.type
+	print("action type ", action.type)
 	for stat in ['action_cost', 'healing', 'damage', 'range']:
 		var node = $VBoxContainer/Stats.get_node(stat.to_pascal_case())
 		

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var actions: Array[AT.ActionType]
+@export var raw_actions: Array[ActionType.RawActionType]
 
 @export var tilemap: TileMapLayer
 @export var title: String
@@ -11,6 +11,7 @@ extends Node2D
 var mappos: Vector2i
 @onready var action_points = max_action_points
 @onready var health = max_health
+@onready var actions = raw_actions.map(ActionType.from_raw)
 
 
 
@@ -63,23 +64,20 @@ func walkable_tiles() -> Dictionary:
 	visited.erase(mappos)
 	return visited
 
-func targets(action: AT.ActionType) -> Array[Vector2i]:
+func targets(action: ActionType) -> Array[Vector2i]:
 	#return []
-	if AT.cost(action) > action_points:
+	if action.cost() > action_points:
 		return []
 	return tilemap.get_surrounding_cells(mappos).filter(func(pos): return can_act(action, pos))
 
-func can_act(action: AT.ActionType, pos: Vector2i) -> bool:
+func can_act(action: ActionType, pos: Vector2i) -> bool:
 	if not (action in actions):
 		return false
-	if action == AT.ActionType.Raise:
-		#print(pos, " ", tilemap.get_tile(pos).raised != null, tilemap.get_tile(pos).title)
-		return tilemap.get_tile(pos).raised != null
-	else:
-		return false
+	return action.can_perform(tilemap.get_tile(pos))
 
-func act(action: AT.ActionType, pos: Vector2i):
-	if action == AT.ActionType.Raise:
+func act(action: ActionType, pos: Vector2i):
+	action_points -= action.cost()
+	if is_instance_of(action, ActionType.Raise):
 		var to_raise: PackedScene = tilemap.get_tile(pos).raised
 		var unit: Node = to_raise.instantiate()
 		unit.mappos = pos
@@ -101,10 +99,11 @@ func selectable() -> Selectable:
 	selectable.actions = []
 	for action in actions:
 		var sa: Selectable.Action = Selectable.Action.new()
-		var cost = AT.cost(action)
+		var cost = action.cost()
+		sa.type = action
 		sa.stats = {"action_cost": cost}
 		sa.enabled = true
-		sa.title = AT.title(action)
+		sa.title = action.title()
 		print(sa.title, " ", targets(action))
 		if cost > action_points:
 			sa.enabled = false

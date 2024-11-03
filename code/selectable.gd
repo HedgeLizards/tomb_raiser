@@ -17,4 +17,4 @@ class Action:
 	var enabled: bool
 	var disabled_reason: String # only if not enabled
 	var stats: Dictionary # Dictionary[String, int]
-	var type: AT.ActionType
+	var type: ActionType
