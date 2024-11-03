@@ -46,22 +46,17 @@ func select_unit_action(action: AT.ActionType) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var click_pos: Vector2
-	if event is InputEventMouseMotion:
-		#print("mouse motion ", event.)
-		click_start = NOT_CLICKING
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			click_start = event.position
 			return
 		else:
-			if click_start == event.position:
+			if event.position.distance_to(click_start) < 3:
 				click_start = NOT_CLICKING
 				click_pos = event.position
 			else:
 				click_start = NOT_CLICKING
 				return
-	elif event is InputEventScreenTouch:
-		click_pos = event.position
 	else:
 		return
 	var clicked_tile: Vector2i = %Ground.local_to_map(%Ground.make_canvas_position_local(click_pos))
