@@ -113,7 +113,7 @@ _data = {
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_kjdw6")
 raw_actions = Array[int]([1])
-title = "Undead army"
+title = "Undead Army"
 max_health = 3
 max_action_points = 3
 
