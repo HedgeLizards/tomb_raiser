@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.533333, 0.733333, 0.933333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0.7, 0.7), Vector2(0.5, 0.5)]
+"values": [Vector2(0, 0), Vector2(0.4, 0.4), Vector2(0.2, 0.2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -87,7 +87,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.9, 1.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -0.349066]
+"values": [1.0472, 1.5708]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -109,7 +109,7 @@ _data = {
 "Wiggle": SubResource("Animation_iei02")
 }
 
-[node name="SkeletonSimple" type="Node2D"]
+[node name="Skeleton" type="Node2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_kjdw6")
 raw_actions = Array[int]([1])
@@ -146,13 +146,13 @@ offset = Vector2(-20, -30)
 
 [node name="UnitSkeletonsArm" type="Sprite2D" parent="SkeletonPuppet/UnitSkeletons"]
 position = Vector2(-154, -26)
-rotation = -0.339292
+rotation = 1.48731
 texture = ExtResource("5_fvwi7")
-offset = Vector2(-21.57, -146.6)
+offset = Vector2(-149.05, 30.41)
 
 [node name="UnitSkeletonHead" type="Sprite2D" parent="SkeletonPuppet/UnitSkeletons"]
 position = Vector2(-22, -156)
-rotation = -0.11906
+rotation = -0.0920241
 scale = Vector2(1.17737, 1.17737)
 texture = ExtResource("6_qgasr")
 offset = Vector2(-2.17, -46.19)

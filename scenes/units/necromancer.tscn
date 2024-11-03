@@ -106,7 +106,7 @@ _data = {
 
 [node name="Necromancer" type="Node2D"]
 position = Vector2(0, -72)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("2_lgfq1")
 raw_actions = Array[int]([2, 0])
 title = "Necromancer"
