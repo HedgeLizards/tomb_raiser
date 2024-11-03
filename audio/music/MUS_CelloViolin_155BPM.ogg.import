@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://b1e5ack8p82lv"
+uid="uid://bfa34w8c1iapm"
 path="res://.godot/imported/MUS_CelloViolin_155BPM.ogg-7085fc8ef94ff079e12a1e63420c34d8.oggvorbisstr"
 
 [deps]
@@ -16,4 +16,4 @@ loop=true
 loop_offset=0.0
 bpm=155.0
 beat_count=0
-bar_beats=4
+bar_beats=3

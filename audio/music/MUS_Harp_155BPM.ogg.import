@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://bfu751xm8xibo"
+uid="uid://bq61td41jcxsk"
 path="res://.godot/imported/MUS_Harp_155BPM.ogg-758a325e0d87583eb758a7e7f82c579a.oggvorbisstr"
 
 [deps]
@@ -16,4 +16,4 @@ loop=true
 loop_offset=0.0
 bpm=155.0
 beat_count=0
-bar_beats=4
+bar_beats=3
