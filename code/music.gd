@@ -14,6 +14,8 @@ func _on_cursor_selection_changed(selected):
 				$SFX.play()
 			"Village":
 				$Music.get_stream_playback().switch_to_clip_by_name("Harp")
+			"Tomb":
+				$Music.get_stream_playback().switch_to_clip_by_name("Organ")
 			_:
 				$Music.get_stream_playback().switch_to_clip_by_name("Ensemble")
 	else:
